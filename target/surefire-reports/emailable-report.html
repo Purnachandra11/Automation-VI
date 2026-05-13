@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "https://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="https://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<title>TestNG Report</title>
+<style type="text/css">table {margin-bottom:10px;border-collapse:collapse;empty-cells:show}th,td {border:1px solid #009;padding:.25em .5em}th {vertical-align:bottom}td {vertical-align:top}table a {font-weight:bold}.stripe td {background-color: #E6EBF9}.num {text-align:right}.passedodd td {background-color: #3F3}.passedeven td {background-color: #0A0}.skippedodd td {background-color: #DDD}.skippedeven td {background-color: #CCC}.failedodd td,.attn {background-color: #F33}.failedeven td,.stripe .attn {background-color: #D00}.stacktrace {white-space:pre;font-family:monospace}.totop {font-size:85%;text-align:center;border-bottom:2px solid #000}.invisible {display:none}</style>
+</head>
+<body>
+<table>
+<tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Retried</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
+<tr><th colspan="8">Surefire suite</th></tr>
+<tr><td><a href="#t0">Surefire test</a></td><td class="num">0</td><td class="num attn">1</td><td class="num">0</td><td class="num">0</td><td class="num">27,916</td><td></td><td></td></tr>
+</table>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Surefire suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Surefire test &#8212; failed (configuration methods)</th></tr><tr class="failedeven"><td rowspan="1">com.telecom.tests.DataUsageTest</td><td><a href="#m0">setUp</a></td><td rowspan="1">1767859234553</td><td rowspan="1">27876</td></tr><tr><th colspan="4">Surefire test &#8212; skipped (configuration methods)</th></tr><tr class="skippedeven"><td rowspan="1">com.telecom.tests.DataUsageTest</td><td><a href="#m1">tearDown</a></td><td rowspan="1">1767859262451</td><td rowspan="1">0</td></tr><tr><th colspan="4">Surefire test &#8212; skipped</th></tr><tr class="skippedeven"><td rowspan="1">com.telecom.tests.DataUsageTest</td><td><a href="#m2">executeDataUsageTests</a></td><td rowspan="1">1767859262446</td><td rowspan="1">0</td></tr></tbody>
+</table>
+<h2>Surefire test</h2><h3 id="m0">com.telecom.tests.DataUsageTest#setUp</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">org.openqa.selenium.SessionNotCreatedException: Could not start a new session. Response code 500. Message: Error executing adbExec. Original error: &apos;Command &apos;&apos;C:\Users\Administrator\AppData\Local\Android\Sdk\platform-tools\adb.exe&apos; -P 5037 -s 100.119.228.107\:45163 install -g &apos;C:\Users\Administrator\.appium\node_modules\appium-uiautomator2-driver\node_modules\io.appium.settings\apks\settings_apk-debug.apk&apos;&apos; exited with code 1&apos;; Command output: adb.exe: device offline
+ 
+Host info: host: &apos;VIAUTOMATE&apos;, ip: &apos;100.102.180.112&apos;
+Build info: version: &apos;4.13.0&apos;, revision: &apos;ba948ece5b*&apos;
+System info: os.name: &apos;Windows Server 2022&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.8&apos;
+Driver info: io.appium.java_client.android.AndroidDriver
+Command: [null, newSession {capabilities=[{appium:allowInsecure=adb_shell, appium:systemPort=8200, appium:skipServerInstallation=true, appium:newCommandTimeout=300, appium:nativeWebScreenshot=true, appium:enforceAppInstall=false, appium:automationName=UiAutomator2, appium:fullReset=false, appium:skipDeviceInitialization=false, appium:platformVersion=15, appium:noReset=true, appium:udid=100.119.228.107:45163, appium:autoGrantPermissions=true, appium:relaxedSecurityEnabled=true, appium:adbExecTimeout=120000, appium:connectHardwareKeyboard=true, appium:ignoreHiddenApiPolicyError=true, appium:disableWindowAnimation=true, appium:appActivity=com.google.android.dialer.extensions.GoogleDialtactsActivity, appium:deviceName=moto g85 5G, platformName=ANDROID, appium:appPackage=com.google.android.dialer, appium:ensureWebviewsHavePages=true}], desiredCapabilities=Capabilities {appium:adbExecTimeout: 120000, appium:allowInsecure: adb_shell, appium:appActivity: com.google.android.dialer.e..., appium:appPackage: com.google.android.dialer, appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:connectHardwareKeyboard: true, appium:deviceName: moto g85 5G, appium:disableWindowAnimation: true, appium:enforceAppInstall: false, appium:ensureWebviewsHavePages: true, appium:fullReset: false, appium:ignoreHiddenApiPolicyError: true, appium:nativeWebScreenshot: true, appium:newCommandTimeout: 300, appium:noReset: true, appium:platformVersion: 15, appium:relaxedSecurityEnabled: true, appium:skipDeviceInitialization: false, appium:skipServerInstallation: true, appium:systemPort: 8200, appium:udid: 100.119.228.107:45163, platformName: ANDROID}}]
+Capabilities {appium:adbExecTimeout: 120000, appium:allowInsecure: adb_shell, appium:appActivity: com.google.android.dialer.e..., appium:appPackage: com.google.android.dialer, appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:connectHardwareKeyboard: true, appium:deviceName: moto g85 5G, appium:disableWindowAnimation: true, appium:enforceAppInstall: false, appium:ensureWebviewsHavePages: true, appium:fullReset: false, appium:ignoreHiddenApiPolicyError: true, appium:nativeWebScreenshot: true, appium:newCommandTimeout: 300, appium:noReset: true, appium:platformVersion: 15, appium:relaxedSecurityEnabled: true, appium:skipDeviceInitialization: false, appium:skipServerInstallation: true, appium:systemPort: 8200, appium:udid: 100.119.228.107:45163, platformName: ANDROID}
+	at org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:140)
+	at io.appium.java_client.remote.AppiumProtocolHandshake.createSession(AppiumProtocolHandshake.java:133)
+	at io.appium.java_client.remote.AppiumProtocolHandshake.createSession(AppiumProtocolHandshake.java:102)
+	at io.appium.java_client.remote.AppiumCommandExecutor.createSession(AppiumCommandExecutor.java:182)
+	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:250)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:602)
+	at io.appium.java_client.AppiumDriver.startSession(AppiumDriver.java:274)
+	at org.openqa.selenium.remote.RemoteWebDriver.&lt;init&gt;(RemoteWebDriver.java:163)
+	at io.appium.java_client.AppiumDriver.&lt;init&gt;(AppiumDriver.java:89)
+	at io.appium.java_client.AppiumDriver.&lt;init&gt;(AppiumDriver.java:101)
+	at io.appium.java_client.android.AndroidDriver.&lt;init&gt;(AndroidDriver.java:113)
+	at com.telecom.driver.DriverManager.initializeDriver(DriverManager.java:318)
+	at com.telecom.tests.DataUsageTest.setUp(DataUsageTest.java:32)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+... Removed 30 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m1">com.telecom.tests.DataUsageTest#tearDown</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m2">com.telecom.tests.DataUsageTest#executeDataUsageTests</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">org.openqa.selenium.SessionNotCreatedException: Could not start a new session. Response code 500. Message: Error executing adbExec. Original error: &apos;Command &apos;&apos;C:\Users\Administrator\AppData\Local\Android\Sdk\platform-tools\adb.exe&apos; -P 5037 -s 100.119.228.107\:45163 install -g &apos;C:\Users\Administrator\.appium\node_modules\appium-uiautomator2-driver\node_modules\io.appium.settings\apks\settings_apk-debug.apk&apos;&apos; exited with code 1&apos;; Command output: adb.exe: device offline
+ 
+Host info: host: &apos;VIAUTOMATE&apos;, ip: &apos;100.102.180.112&apos;
+Build info: version: &apos;4.13.0&apos;, revision: &apos;ba948ece5b*&apos;
+System info: os.name: &apos;Windows Server 2022&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.8&apos;
+Driver info: io.appium.java_client.android.AndroidDriver
+Command: [null, newSession {capabilities=[{appium:allowInsecure=adb_shell, appium:systemPort=8200, appium:skipServerInstallation=true, appium:newCommandTimeout=300, appium:nativeWebScreenshot=true, appium:enforceAppInstall=false, appium:automationName=UiAutomator2, appium:fullReset=false, appium:skipDeviceInitialization=false, appium:platformVersion=15, appium:noReset=true, appium:udid=100.119.228.107:45163, appium:autoGrantPermissions=true, appium:relaxedSecurityEnabled=true, appium:adbExecTimeout=120000, appium:connectHardwareKeyboard=true, appium:ignoreHiddenApiPolicyError=true, appium:disableWindowAnimation=true, appium:appActivity=com.google.android.dialer.extensions.GoogleDialtactsActivity, appium:deviceName=moto g85 5G, platformName=ANDROID, appium:appPackage=com.google.android.dialer, appium:ensureWebviewsHavePages=true}], desiredCapabilities=Capabilities {appium:adbExecTimeout: 120000, appium:allowInsecure: adb_shell, appium:appActivity: com.google.android.dialer.e..., appium:appPackage: com.google.android.dialer, appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:connectHardwareKeyboard: true, appium:deviceName: moto g85 5G, appium:disableWindowAnimation: true, appium:enforceAppInstall: false, appium:ensureWebviewsHavePages: true, appium:fullReset: false, appium:ignoreHiddenApiPolicyError: true, appium:nativeWebScreenshot: true, appium:newCommandTimeout: 300, appium:noReset: true, appium:platformVersion: 15, appium:relaxedSecurityEnabled: true, appium:skipDeviceInitialization: false, appium:skipServerInstallation: true, appium:systemPort: 8200, appium:udid: 100.119.228.107:45163, platformName: ANDROID}}]
+Capabilities {appium:adbExecTimeout: 120000, appium:allowInsecure: adb_shell, appium:appActivity: com.google.android.dialer.e..., appium:appPackage: com.google.android.dialer, appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:connectHardwareKeyboard: true, appium:deviceName: moto g85 5G, appium:disableWindowAnimation: true, appium:enforceAppInstall: false, appium:ensureWebviewsHavePages: true, appium:fullReset: false, appium:ignoreHiddenApiPolicyError: true, appium:nativeWebScreenshot: true, appium:newCommandTimeout: 300, appium:noReset: true, appium:platformVersion: 15, appium:relaxedSecurityEnabled: true, appium:skipDeviceInitialization: false, appium:skipServerInstallation: true, appium:systemPort: 8200, appium:udid: 100.119.228.107:45163, platformName: ANDROID}
+	at org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:140)
+	at io.appium.java_client.remote.AppiumProtocolHandshake.createSession(AppiumProtocolHandshake.java:133)
+	at io.appium.java_client.remote.AppiumProtocolHandshake.createSession(AppiumProtocolHandshake.java:102)
+	at io.appium.java_client.remote.AppiumCommandExecutor.createSession(AppiumCommandExecutor.java:182)
+	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:250)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:602)
+	at io.appium.java_client.AppiumDriver.startSession(AppiumDriver.java:274)
+	at org.openqa.selenium.remote.RemoteWebDriver.&lt;init&gt;(RemoteWebDriver.java:163)
+	at io.appium.java_client.AppiumDriver.&lt;init&gt;(AppiumDriver.java:89)
+	at io.appium.java_client.AppiumDriver.&lt;init&gt;(AppiumDriver.java:101)
+	at io.appium.java_client.android.AndroidDriver.&lt;init&gt;(AndroidDriver.java:113)
+	at com.telecom.driver.DriverManager.initializeDriver(DriverManager.java:318)
+	at com.telecom.tests.DataUsageTest.setUp(DataUsageTest.java:32)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+... Removed 30 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+</body>
+</html>

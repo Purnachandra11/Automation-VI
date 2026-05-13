@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Xiaomi Telecom Test Suite]" guice-stage="DEVELOPMENT" verbose="2">
+  <parameter name="platformVersion" value="13"/>
+  <parameter name="udid" value="d875b0e1"/>
+  <test thread-count="5" name="Voice Call Test(failed)" verbose="2">
+    <classes>
+      <class name="com.telecom.tests.VoiceCallTest">
+        <methods>
+          <include name="tearDown"/>
+          <include name="testOutgoingVoiceCall"/>
+          <include name="setupSuite"/>
+          <include name="tearDownSuite"/>
+          <include name="setup"/>
+        </methods>
+      </class> <!-- com.telecom.tests.VoiceCallTest -->
+    </classes>
+  </test> <!-- Voice Call Test(failed) -->
+  <test thread-count="5" name="SMS Test(failed)" verbose="2">
+    <classes>
+      <class name="com.telecom.tests.SMSTest">
+        <methods>
+          <include name="tearDown"/>
+          <include name="testSendMultipleSMS"/>
+          <include name="setupSuite"/>
+          <include name="tearDownSuite"/>
+          <include name="setup"/>
+        </methods>
+      </class> <!-- com.telecom.tests.SMSTest -->
+    </classes>
+  </test> <!-- SMS Test(failed) -->
+  <test thread-count="5" name="Integrated Test(failed)" verbose="2">
+    <classes>
+      <class name="com.telecom.tests.IntegratedTest">
+        <methods>
+          <include name="tearDown"/>
+          <include name="setupSuite"/>
+          <include name="tearDownSuite"/>
+          <include name="testCompleteScenario"/>
+          <include name="setup"/>
+        </methods>
+      </class> <!-- com.telecom.tests.IntegratedTest -->
+    </classes>
+  </test> <!-- Integrated Test(failed) -->
+</suite> <!-- Failed suite [Xiaomi Telecom Test Suite] -->

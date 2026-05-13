@@ -1,0 +1,25 @@
+{
+  "name": "automation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "appium": "^3.1.1",
+    "appium-uiautomator2-driver": "^6.4.1",
+    "child_process": "^1.0.2",
+    "cors": "^2.8.5",
+    "exceljs": "^4.4.0",
+    "express": "^5.1.0",
+    "get-port": "^7.1.0",
+    "multer": "^2.0.2",
+    "webdriverio": "^9.21.0",
+    "xlsx": "^0.18.5"
+  }
+}

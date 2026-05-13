@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Comprehensive Test Suite - All Tests" parallel="false">
+    <test name="Complete Telecom Automation Tests">
+        <classes>
+            <class name="com.telecom.tests.CallingTest"/>
+            <class name="com.telecom.tests.SMSTest"/>
+            <class name="com.telecom.tests.DataUsageTest"/>
+        </classes>
+    </test>
+</suite>

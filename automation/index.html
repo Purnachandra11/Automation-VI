@@ -1,0 +1,35 @@
+<button onclick="detectDevice()">Detect Device</button>
+<div id="device"></div>
+
+<form onsubmit="startTest(event)">
+    <input name="testName" placeholder="Test Name"><br>
+    <input name="targetNumber" placeholder="Target Number"><br>
+    <input name="duration" placeholder="Duration (sec)"><br>
+    <button type="submit">Start Test</button>
+</form>
+
+<script>
+async function detectDevice() {
+    const res = await fetch("/device");
+    document.getElementById("device").innerText = await res.text();
+}
+
+async function startTest(e) {
+    e.preventDefault();
+    const form = new FormData(e.target);
+    
+    const body = {
+        testName: form.get("testName"),
+        targetNumber: form.get("targetNumber"),
+        duration: form.get("duration")
+    };
+
+    const res = await fetch("/start-test", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body)
+    });
+
+    alert(await res.text());
+}
+</script>

@@ -1,0 +1,7 @@
+com\telecom\tests\SMSTest.class
+com\telecom\tests\DataUsageTest.class
+com\telecom\tests\SIMToolkitCaptureTest.class
+com\telecom\tests\SIMAutoLatchTestSuite.class
+com\telecom\tests\CallingTest.class
+com\telecom\tests\Main.class
+com\telecom\tests\UpdatedSMSTest.class

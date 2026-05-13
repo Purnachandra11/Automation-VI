@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Automation Dashboard Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f5f4f1;
+      --card-bg: #ffffff;
+      --accent: #e45e4e;
+      --text-dark: #2e2a27;
+      --text-muted: #6f6b67;
+      --border: rgba(0, 0, 0, 0.06);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg);
+      font-family: 'Inter', sans-serif;
+      color: var(--text-dark);
+      padding: 20px;
+    }
+
+    .login-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.08);
+      width: 100%;
+      max-width: 420px;
+      padding: 40px;
+      border: 1px solid var(--border);
+      text-align: center;
+      animation: fadeIn 0.6s ease;
+    }
+
+    .login-card img {
+      width: 140px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      margin-bottom: 10px;
+      color: var(--accent);
+    }
+
+    p.subtitle {
+      color: var(--text-muted);
+      margin-bottom: 22px;
+    }
+
+    .form-group {
+      text-align: left;
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+      background: #fbfbfb;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
+      border-radius: 12px;
+      border: none;
+      background: var(--accent);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+      margin-top: 8px;
+    }
+
+    .btn:hover {
+      background: #cf4d40;
+    }
+
+    .error-message {
+      display: none;
+      background: #ffe0e0;
+      color: #b00020;
+      border-radius: 8px;
+      padding: 10px 12px;
+      margin-bottom: 14px;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+    .password-group {
+  position: relative;
+}
+
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 40px; /* space for eye icon */
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 18px;
+  color: #666;
+  user-select: none;
+  transition: 0.2s;
+}
+
+.toggle-password:hover {
+  color: #000;
+}
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="login-card">
+    <img src="https://qdegrees.com/img/logo.svg" alt="QDegrees Logo">
+    <h1>Automation Dashboard</h1>
+    <p class="subtitle">Sign in with your QA credentials</p>
+
+    <div id="loginError" class="error-message"></div>
+
+    <div class="form-group">
+      <label for="email">Email address</label>
+      <input type="email" id="email" placeholder="example@gmail.com" autocomplete="username">
+    </div>
+    <div class="form-group password-group">
+        <label for="password">Password</label>
+      
+        <div class="password-wrapper">
+          <input type="password" id="password" placeholder="Enter password" autocomplete="current-password">
+          <span class="toggle-password" onclick="togglePassword()">
+            👁️
+          </span>
+        </div>
+      </div>
+      
+    <button class="btn" onclick="handleLogin()">Sign In</button>
+  </div>
+  
+
+  <script>
+    const API_BASE = 'http://localhost:3000/api';
+
+    async function handleLogin() {
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const errorBox = document.getElementById('loginError');
+
+      if (!email || !password) {
+        showError('Please enter both email and password.');
+        return;
+      }
+
+      try {
+        const response = await fetch(`${API_BASE}/auth/login`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ email, password })
+        });
+
+        const data = await response.json();
+        if (!response.ok || !data.success) {
+          showError(data.message || 'Invalid credentials. Please try again.');
+          return;
+        }
+
+        sessionStorage.setItem('sessionToken', data.token);
+        sessionStorage.setItem('userEmail', data.email);
+        window.location.href = '/';
+      } catch (error) {
+        showError('Unable to login right now. Please try again later.');
+      }
+    }
+
+    function showError(message) {
+      const errorBox = document.getElementById('loginError');
+      errorBox.style.display = 'block';
+      errorBox.textContent = message;
+    }
+    function togglePassword() {
+  const passwordField = document.getElementById("password");
+  const toggleIcon = document.querySelector(".toggle-password");
+
+  if (passwordField.type === "password") {
+    passwordField.type = "text";
+    toggleIcon.textContent = "🙈"; // closed eye
+  } else {
+    passwordField.type = "password";
+    toggleIcon.textContent = "👁️"; // open eye
+  }
+}
+    document.getElementById('password').addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        handleLogin();
+      }
+    });
+  </script>
+</body>
+
+</html>
+

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>SIM Auto-Latch Test Report</title>
+<style>
+body { font-family: Arial, sans-serif; margin: 20px; background-color: #f5f5f5; }
+.container { max-width: 95%; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+h1 { color: #333; text-align: center; margin-bottom: 30px; }
+.summary { background: #e8f4fd; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+.party-info { background: #f0f8ff; padding: 10px; border-radius: 5px; margin: 10px 0; }
+.party-info h3 { margin-top: 0; color: #2c5282; }
+table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 12px; }
+th, td { padding: 8px; text-align: left; border: 1px solid #ddd; }
+th { background-color: #4CAF50; color: white; position: sticky; top: 0; }
+tr:hover { background-color: #f5f5f5; }
+.success { background-color: #d4edda; }
+.failed { background-color: #f8d7da; }
+.partial { background-color: #fff3cd; }
+.network-info { font-size: 11px; color: #555; }
+</style>
+</head>
+<body>
+
+<div class='container'>
+<h1>📡 SIM Auto-Latch Test Report</h1>
+<div class='summary'>
+<h3>Test Summary</h3>
+<p><strong>Total Tests:</strong> 2</p>
+<p><strong>Pass (＜30s):</strong> 2 | <strong>Marginal (30-60s):</strong> 0 | <strong>Slow (＞60s):</strong> 0 | <strong>Failed:</strong> 0</p>
+<p><strong>Success Rate:</strong> 100.00%</p>
+<p><strong>Average Auto-Latch Time:</strong> 3.11 seconds</p>
+<p><strong>Generated:</strong> 2026-01-08 11:14:28</p>
+</div>
+
+<table>
+<thead>
+<tr>
+<th>Test Name</th><th>Device</th><th>Network</th><th>Auto-Latch Time</th><th>Result</th><th>Initial State</th><th>Final State</th><th>IMS</th><th>Transitions</th><th>Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr class='success'>
+<td>SIM Auto-Latch: 7413082258 -> Auto (60s, 1 attempts)</td>
+<td>A-PARTY<div class='network-info'>100.84.76.21:38949</div></td>
+<td>Auto</td>
+<td>3120 ms<br><small>(3.12s)</small></td>
+<td><strong>PASS</strong><br><small>✓ Fast (<30s)</small></td>
+<td>IN_SERVICE<div class='network-info'>LTE | IMS: ✓</div></td>
+<td>IN_SERVICE<div class='network-info'>LTE | IMS: ✓</div></td>
+<td>✓ → ✓</td>
+<td><small>0s: OUT_OF_SERVICE → IN_SERVICE (LTE)</small></td>
+<td>Result: PASS | Successful: 1/1 | Time: 3120 ms | RAT: LTE | IMS: ✅</td>
+</tr>
+<tr class='success'>
+<td>SIM Auto-Latch: 7413082258 -> Auto (120s, 1 attempts)</td>
+<td>A-PARTY<div class='network-info'>100.84.76.21:38949</div></td>
+<td>Auto</td>
+<td>3101 ms<br><small>(3.10s)</small></td>
+<td><strong>PASS</strong><br><small>✓ Fast (<30s)</small></td>
+<td>IN_SERVICE<div class='network-info'>LTE | IMS: ✓</div></td>
+<td>IN_SERVICE<div class='network-info'>LTE | IMS: ✓</div></td>
+<td>✓ → ✓</td>
+<td><small>0s: OUT_OF_SERVICE → IN_SERVICE (LTE)</small></td>
+<td>Result: PASS | Successful: 1/1 | Time: 3101 ms | RAT: LTE | IMS: ✅</td>
+</tr>
+</tbody>
+</table>
+
+</div></body></html>
