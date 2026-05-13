@@ -1588,13 +1588,13 @@
 	    html += `</tbody></table>`;
 	    
 	    // Add filter toggle button
-<!--	    html += `-->
-<!--	      <div style="margin-top: 15px; text-align: center;">-->
-<!--	        <button class="btn btn-info" onclick="toggleReportFilter()" style="padding: 8px 16px;">-->
-<!--	          ${todayCount === totalCount ? 'Show All Reports' : 'Show Only Today\'s Reports'}-->
-<!--	        </button>-->
-<!--	      </div>-->
-<!--	    `;-->
+html += `
+<div style="margin-top: 15px; text-align: center;">
+<button class="btn btn-info" onclick="toggleReportFilter()" style="padding: 8px 16px;">
+       ${todayCount === totalCount ? 'Show All Reports' : 'Show Only Today\'s Reports'}
+</button>
+	      </div>
+`;
 
 	    container.innerHTML = html;
 
@@ -1609,12 +1609,12 @@
 	  }
 	}
 
-<!--	// Function to toggle between showing all reports and only today's reports-->
-<!--	function toggleReportFilter() {-->
-<!--	  // You can implement this by adding a date filter parameter to your API call-->
-<!--	  // For now, just reload with a different approach-->
-<!--	  loadTestReports();-->
-<!--	}-->
+// Function to toggle between showing all reports and only today's reports
+function toggleReportFilter() {
+	  // You can implement this by adding a date filter parameter to your API call
+	  // For now, just reload with a different approach
+	  loadTestReports();
+}
 
 
 function downloadSampleFile() {
