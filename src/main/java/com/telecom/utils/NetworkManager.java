@@ -3,7 +3,7 @@ package com.telecom.utils;
 public class NetworkManager {
     
     /**
-     * ✅ POINT 1: Dynamic Network Type Handling with proper radio deactivation
+     *  POINT 1: Dynamic Network Type Handling with proper radio deactivation
      */
     public static boolean setNetworkType(String deviceId, String targetNetworkType) {
         System.out.println("🔡 Changing network type to: " + targetNetworkType);
@@ -28,7 +28,7 @@ public class NetworkManager {
                     System.out.println("   ❌ 3G signal not available - Test will be skipped");
                     return false;
                 }
-                System.out.println("   ✅ 3G signal available - Proceeding with network change");
+                System.out.println("    3G signal available - Proceeding with network change");
             }
             
             // Step 3: Set the network type
@@ -47,7 +47,7 @@ public class NetworkManager {
             boolean success = verifyNetworkSwitch(targetNetworkType, newNetwork);
             
             if (success) {
-                System.out.println("   ✅ Network type changed successfully to: " + newNetwork);
+                System.out.println("    Network type changed successfully to: " + newNetwork);
             } else {
                 System.out.println("   ⚠️ Network change initiated, verification pending");
             }
@@ -73,7 +73,7 @@ public class NetworkManager {
             String forceLTE = "adb -s " + deviceId + " shell settings put global preferred_network_mode 11";
             ADBHelper.executeCommand(forceLTE);
             
-            System.out.println("   ✅ 5G radio deactivated");
+            System.out.println("    5G radio deactivated");
             
         } catch (Exception e) {
             System.out.println("   ⚠️ 5G deactivation warning: " + e.getMessage());
@@ -182,7 +182,7 @@ public class NetworkManager {
     }
     
     /**
-     * ✅ POINT 2: Get highest available network for data usage
+     *  POINT 2: Get highest available network for data usage
      */
     public static String getHighestAvailableNetwork(String deviceId) {
         System.out.println("🔍 Detecting highest available network for data usage...");
@@ -190,13 +190,13 @@ public class NetworkManager {
         try {
             // Check for 5G availability
             if (check5GAvailability(deviceId)) {
-                System.out.println("   ✅ 5G available - Using 5G for data usage");
+                System.out.println("    5G available - Using 5G for data usage");
                 return "5G";
             }
             
             // Check for 4G availability
             if (check4GAvailability(deviceId)) {
-                System.out.println("   ✅ 4G available - Using 4G for data usage");
+                System.out.println("    4G available - Using 4G for data usage");
                 return "4G";
             }
             

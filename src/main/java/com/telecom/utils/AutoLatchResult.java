@@ -3,7 +3,7 @@ package com.telecom.utils;
 import java.time.Instant;
 
 /**
- * ✅ Result class for auto-latch test
+ *  Result class for auto-latch test
  */
 public class AutoLatchResult {
     private String deviceId;

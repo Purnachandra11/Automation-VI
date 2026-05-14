@@ -83,7 +83,7 @@ public class ScreenshotUtils {
     }
 
     /**
-     * ✅ Load existing screenshots from disk into memory
+     *  Load existing screenshots from disk into memory
      * FIXED: Added null check for directory
      */
     private void loadExistingScreenshots() {
@@ -437,7 +437,7 @@ public class ScreenshotUtils {
                 .append("</body></html>");
 
             FileUtils.writeStringToFile(new File(reportPath), html.toString(), "UTF-8");
-            System.out.println("✅ Screenshot report saved: " + reportPath);
+            System.out.println(" Screenshot report saved: " + reportPath);
             System.out.println("📊 Screenshots in report: " + testScreenshots.size());
 
         } catch (Exception e) {

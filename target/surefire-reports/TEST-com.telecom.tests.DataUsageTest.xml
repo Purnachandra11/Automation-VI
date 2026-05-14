@@ -122,10 +122,10 @@ Capabilities {appium:adbExecTimeout: 120000, appium:allowInsecure: adb_shell, ap
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
 ]]></failure>
     <system-out><![CDATA[🌐 Setting up Data Usage Test Environment...
-✅ Using existing Appium server
+ Using existing Appium server
 🚀 Initializing driver for: 100.119.228.107:45163
 🔍 Looking for available port for device: 100.119.228.107:45163
-✅ Assigned port 8200 to device 100.119.228.107:45163
+ Assigned port 8200 to device 100.119.228.107:45163
 ❌ Driver initialization failed: Could not start a new session. Response code 500. Message: Error executing adbExec. Original error: 'Command ''C:\Users\Administrator\AppData\Local\Android\Sdk\platform-tools\adb.exe' -P 5037 -s 100.119.228.107\:45163 install -g 'C:\Users\Administrator\.appium\node_modules\appium-uiautomator2-driver\node_modules\io.appium.settings\apks\settings_apk-debug.apk'' exited with code 1'; Command output: adb.exe: device offline
  
 Host info: host: 'VIAUTOMATE', ip: '100.102.180.112'

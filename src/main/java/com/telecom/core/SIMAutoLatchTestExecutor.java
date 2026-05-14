@@ -31,7 +31,7 @@ public class SIMAutoLatchTestExecutor {
     }
     
     /**
-     * ✅ MAIN EXECUTION METHOD
+     *  MAIN EXECUTION METHOD
      */
     public List<Map<String, Object>> executeAllSIMAutoLatchTests(String excelFilePath) {
         testResults.clear();
@@ -120,7 +120,7 @@ public class SIMAutoLatchTestExecutor {
     }
     
     /**
-     * ✅ EXECUTE SINGLE AUTO-LATCH TEST WITH PROPER ERROR HANDLING
+     *  EXECUTE SINGLE AUTO-LATCH TEST WITH PROPER ERROR HANDLING
      */
     private Map<String, Object> executeSingleAutoLatchTest(
             Map<String, Object> testCase,
@@ -162,7 +162,7 @@ public class SIMAutoLatchTestExecutor {
             List<AutoLatchResult> attemptResults = new ArrayList<>();
             
             for (int attempt = 1; attempt <= maxAttempts; attempt++) {
-                System.out.println("\n🔄 Attempt " + attempt + "/" + maxAttempts);
+                System.out.println("\n Attempt " + attempt + "/" + maxAttempts);
                 
                 try {
                     SIMAutoLatchMonitor monitor = new SIMAutoLatchMonitor(deviceId, timeoutSeconds);
@@ -172,12 +172,12 @@ public class SIMAutoLatchTestExecutor {
                         attemptResults.add(latchResult);
                         
                         if (latchResult.isSuccess()) {
-                            System.out.println("✅ Attempt " + attempt + " succeeded: " + 
+                            System.out.println(" Attempt " + attempt + " succeeded: " + 
                                              latchResult.getAutoLatchTimeMs() + " ms");
                             
                             // Stop if fast enough
                             if (latchResult.getAutoLatchTimeMs() <= 30000) {
-                                System.out.println("✅ Fast latch achieved - stopping attempts");
+                                System.out.println(" Fast latch achieved - stopping attempts");
                                 break;
                             }
                         } else {
@@ -232,13 +232,13 @@ public class SIMAutoLatchTestExecutor {
             result.put("comments", buildAutoLatchComments(result, attemptResults.size()));
             
             // Print final result
-            String emoji = bestResult.isSuccess() ? "✅" : "❌";
+            String emoji = bestResult.isSuccess() ? "" : "❌";
             String testResult = determineOverallResult(bestResult);
             System.out.println("\n" + emoji + " Final Result: " + testResult);
             if (bestResult.isSuccess()) {
                 System.out.println("   ⏱️ Best Auto-latch time: " + bestResult.getAutoLatchTimeMs() + " ms");
                 System.out.println("   📡 Final RAT: " + bestResult.getFinalRAT());
-                System.out.println("   📞 IMS: " + (bestResult.isFinalIMSRegistered() ? "✅ Registered" : "❌ Not Registered"));
+                System.out.println("   📞 IMS: " + (bestResult.isFinalIMSRegistered() ? " Registered" : "❌ Not Registered"));
             } else {
                 System.out.println("   ❌ Error: " + bestResult.getErrorMessage());
             }
@@ -268,7 +268,7 @@ public class SIMAutoLatchTestExecutor {
     }
 
     /**
-     * ✅ CREATE FAILED RESULT OBJECT
+     *  CREATE FAILED RESULT OBJECT
      */
     private AutoLatchResult createFailedResult(String errorMessage) {
         AutoLatchResult result = new AutoLatchResult();
@@ -286,7 +286,7 @@ public class SIMAutoLatchTestExecutor {
     }
 
     /**
-     * ✅ BUILD TRANSITIONS STRING
+     *  BUILD TRANSITIONS STRING
      */
     private String buildTransitionsString(AutoLatchResult result) {
         try {
@@ -312,14 +312,14 @@ public class SIMAutoLatchTestExecutor {
     }
 
     /**
-     * ✅ SAFE STRING GETTER
+     *  SAFE STRING GETTER
      */
     private String safeGetString(String value, String defaultValue) {
         return (value != null && !value.isEmpty()) ? value : defaultValue;
     }
 
     /**
-     * ✅ CHECK DEVICE AVAILABILITY
+     *  CHECK DEVICE AVAILABILITY
      */
     private boolean isDeviceAvailable(String deviceId) {
         try {
@@ -332,7 +332,7 @@ public class SIMAutoLatchTestExecutor {
     }
 
     /**
-     * ✅ DETERMINE BEST RESULT FROM ATTEMPTS
+     *  DETERMINE BEST RESULT FROM ATTEMPTS
      */
     private AutoLatchResult determineBestResult(List<AutoLatchResult> results) {
         if (results == null || results.isEmpty()) {
@@ -363,7 +363,7 @@ public class SIMAutoLatchTestExecutor {
     }
 
     /**
-     * ✅ DETERMINE OVERALL TEST RESULT
+     *  DETERMINE OVERALL TEST RESULT
      */
     private String determineOverallResult(AutoLatchResult result) {
         if (result == null || !result.isSuccess()) {
@@ -381,7 +381,7 @@ public class SIMAutoLatchTestExecutor {
     }
 
     /**
-     * ✅ COUNT SUCCESSFUL ATTEMPTS
+     *  COUNT SUCCESSFUL ATTEMPTS
      */
     private int countSuccessfulAttempts(List<AutoLatchResult> results) {
         int count = 0;
@@ -394,7 +394,7 @@ public class SIMAutoLatchTestExecutor {
     }
 
     /**
-     * ✅ BUILD DETAILED COMMENTS
+     *  BUILD DETAILED COMMENTS
      */
     private String buildAutoLatchComments(Map<String, Object> result, int totalAttemptsMade) {
         StringBuilder comments = new StringBuilder();
@@ -416,7 +416,7 @@ public class SIMAutoLatchTestExecutor {
             comments.append(" | RAT: ").append(finalRAT);
             
             boolean imsRegistered = (Boolean) result.getOrDefault("finalIMSRegistered", false);
-            comments.append(" | IMS: ").append(imsRegistered ? "✅" : "❌");
+            comments.append(" | IMS: ").append(imsRegistered ? "" : "❌");
         } else {
             String error = (String) result.getOrDefault("errorMessage", "Unknown error");
             comments.append(" | Error: ").append(error);
@@ -426,14 +426,14 @@ public class SIMAutoLatchTestExecutor {
     }
 
     /**
-     * ✅ SET NETWORK TYPE ON DEVICE
+     *  SET NETWORK TYPE ON DEVICE
      */
     private boolean setNetworkType(String deviceId, String networkType) {
         try {
             SIMAutoLatchMonitor monitor = new SIMAutoLatchMonitor(deviceId);
             boolean success = monitor.setPreferredNetworkType(networkType);
             if (success) {
-                System.out.println("✅ Network type set to: " + networkType);
+                System.out.println(" Network type set to: " + networkType);
             } else {
                 System.out.println("⚠️ Failed to set network type");
             }
@@ -445,7 +445,7 @@ public class SIMAutoLatchTestExecutor {
     }
     
     /**
-     * ✅ GENERATE EXCEL AND HTML REPORTS
+     *  GENERATE EXCEL AND HTML REPORTS
      */
     private void generateReports() {
         try {
@@ -457,13 +457,13 @@ public class SIMAutoLatchTestExecutor {
             String htmlReport = ReportGenerator.generateSIMAutoLatchHTMLReport(testResults);
             
             if (excelReport != null) {
-                System.out.println("✅ Excel Report: " + excelReport);
+                System.out.println(" Excel Report: " + excelReport);
             } else {
                 System.out.println("⚠️ Excel report generation failed");
             }
             
             if (htmlReport != null) {
-                System.out.println("✅ HTML Report: " + htmlReport);
+                System.out.println(" HTML Report: " + htmlReport);
             } else {
                 System.out.println("⚠️ HTML report generation failed");
             }
@@ -476,7 +476,7 @@ public class SIMAutoLatchTestExecutor {
     }
     
     /**
-     * ✅ PRINT COMPREHENSIVE SUMMARY
+     *  PRINT COMPREHENSIVE SUMMARY
      */
     private void printSummary() {
         System.out.println("\n" + "=".repeat(100));
@@ -498,7 +498,7 @@ public class SIMAutoLatchTestExecutor {
             .count();
         
         System.out.println("Total Tests: " + totalTests);
-        System.out.println("✅ PASS (< 30s): " + passTests);
+        System.out.println(" PASS (< 30s): " + passTests);
         System.out.println("⚠️ MARGINAL (30-60s): " + marginalTests);
         System.out.println("🐌 SLOW (> 60s): " + slowTests);
         System.out.println("❌ FAILED: " + failedTests);
@@ -540,7 +540,7 @@ public class SIMAutoLatchTestExecutor {
     }
     
     /**
-     * ✅ HELPER METHOD: GET INT VALUE SAFELY
+     *  HELPER METHOD: GET INT VALUE SAFELY
      */
     private int getIntValue(Object value) {
         if (value == null) return 0;

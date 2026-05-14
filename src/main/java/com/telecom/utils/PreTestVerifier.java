@@ -31,7 +31,7 @@ public class PreTestVerifier {
     }
     
     /**
-     * ✅ Main verification entry point
+     *  Main verification entry point
      */
     public static boolean verifyTestReadiness(List<Map<String, Object>> testData) {
         System.out.println("\n" + "=".repeat(80));
@@ -69,7 +69,7 @@ public class PreTestVerifier {
         
         boolean allPassed = true;
         for (VerificationResult result : results) {
-            String icon = result.isPassed() ? "✅" : "❌";
+            String icon = result.isPassed() ? "" : "❌";
             System.out.println(icon + " " + result.getStatus() + ": " + result.getMessage());
             
             if (!result.getDetails().isEmpty()) {
@@ -84,7 +84,7 @@ public class PreTestVerifier {
         System.out.println("-".repeat(80));
         
         if (allPassed) {
-            System.out.println("✅ ALL VERIFICATIONS PASSED - Test can proceed");
+            System.out.println(" ALL VERIFICATIONS PASSED - Test can proceed");
         } else {
             System.out.println("❌ VERIFICATION FAILED - Please fix issues before running tests");
         }
@@ -95,7 +95,7 @@ public class PreTestVerifier {
     }
     
     /**
-     * ✅ Verify both devices are connected
+     *  Verify both devices are connected
      */
     private static VerificationResult verifyDeviceConnectivity() {
         String aPartyDevice = System.getProperty("aPartyDevice");
@@ -143,7 +143,7 @@ public class PreTestVerifier {
     }
     
     /**
-     * ✅ Verify device capabilities match test requirements
+     *  Verify device capabilities match test requirements
      */
     private static VerificationResult verifyDeviceCapabilities(List<Map<String, Object>> testData) {
         VerificationResult result = new VerificationResult(true, "Device Capabilities", "");
@@ -165,7 +165,7 @@ public class PreTestVerifier {
     }
     
     /**
-     * ✅ Verify network readiness
+     *  Verify network readiness
      */
     private static VerificationResult verifyNetworkReadiness() {
         String aPartyDevice = System.getProperty("aPartyDevice");
@@ -197,7 +197,7 @@ public class PreTestVerifier {
     }
     
     /**
-     * ✅ Verify VoLTE support on both devices
+     *  Verify VoLTE support on both devices
      */
     private static VerificationResult verifyVoLTESupport() {
         String aPartyDevice = System.getProperty("aPartyDevice");
@@ -239,7 +239,7 @@ public class PreTestVerifier {
     }
     
     /**
-     * ✅ Verify Video Call support
+     *  Verify Video Call support
      */
     private static VerificationResult verifyVideoCallSupport() {
         String aPartyDevice = System.getProperty("aPartyDevice");
@@ -293,13 +293,13 @@ public class PreTestVerifier {
     }
     
     /**
-     * ✅ Grant camera permissions if needed
+     *  Grant camera permissions if needed
      */
     public static void grantCameraPermissions(String deviceId) {
         try {
             System.out.println("📹 Granting camera permissions on: " + deviceId);
             ADBHelper.executeCommand("adb -s " + deviceId + " shell pm grant com.android.dialer android.permission.CAMERA");
-            System.out.println("✅ Camera permissions granted");
+            System.out.println(" Camera permissions granted");
         } catch (Exception e) {
             System.out.println("⚠️ Could not grant camera permissions: " + e.getMessage());
         }

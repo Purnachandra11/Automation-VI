@@ -4,7 +4,7 @@ import java.time.Instant;
 import java.util.List;
 
 /**
- * ✅ Network registration event
+ *  Network registration event
  */
 public class NetworkRegistrationEvent {
     private boolean registered;

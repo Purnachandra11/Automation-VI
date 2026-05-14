@@ -4,7 +4,7 @@ import io.appium.java_client.android.AndroidDriver;
 import java.util.Map;
 
 /**
- * ✅ MESSAGING PAGE WRAPPER
+ *  MESSAGING PAGE WRAPPER
  * Delegates to ImprovedMessagingPage with voice message support
  */
 public class MessagingPage {
@@ -54,7 +54,7 @@ public class MessagingPage {
     }
     
     /**
-     * ✅ Send individual voice message
+     *  Send individual voice message
      */
     public boolean sendIndividualVoiceMessage(String phoneNumber) {
         return improvedMessaging.sendIndividualVoiceMessageFixed(phoneNumber);
@@ -68,7 +68,7 @@ public class MessagingPage {
     }
     
     /**
-     * ✅ Send group voice message
+     *  Send group voice message
      */
     public Map<String, Object> sendGroupVoiceMessage(String groupName) {
         return improvedMessaging.sendGroupVoiceMessage(groupName);

@@ -16,7 +16,7 @@ import java.time.Duration;
 import java.util.*;
 
 /**
- * ✅ ULTIMATE VOICE MESSAGE HANDLER - FIXED AUDIO BUTTON LOCATION
+ *  ULTIMATE VOICE MESSAGE HANDLER - FIXED AUDIO BUTTON LOCATION
  */
 public class VoiceMessageHandler {
     private AndroidDriver driver;
@@ -42,7 +42,7 @@ public class VoiceMessageHandler {
     }
     
     /**
-     * ✅ ULTIMATE VOICE MESSAGE SOLUTION
+     *  ULTIMATE VOICE MESSAGE SOLUTION
      */
     public boolean sendVoiceMessage(String phoneNumber) {
         System.out.println("🎤 ULTIMATE VOICE MESSAGE to: " + phoneNumber);
@@ -77,7 +77,7 @@ public class VoiceMessageHandler {
                 System.out.println("❌ Voice button not found with locators");
                 
                 // Method 2: Find by screen position (right side of text input)
-                System.out.println("🔄 Trying alternative method: Finding by position...");
+                System.out.println(" Trying alternative method: Finding by position...");
                 voiceButton = findVoiceButtonByPosition();
             }
             
@@ -86,7 +86,7 @@ public class VoiceMessageHandler {
                 return false;
             }
             
-            System.out.println("✅ Voice button found!");
+            System.out.println(" Voice button found!");
             
             // 7. Hold voice button for recording
             System.out.println("⏺️ Step 7: Recording voice message (5 seconds)...");
@@ -111,7 +111,7 @@ public class VoiceMessageHandler {
                 boolean verified = messageVerifier.verifyMessageSent();
                 
                 if (verified) {
-                    System.out.println("✅ VOICE MESSAGE VERIFIED AS SENT!");
+                    System.out.println(" VOICE MESSAGE VERIFIED AS SENT!");
                     return true;
                 } else {
                     System.out.println("❌ Voice message verification failed");
@@ -131,7 +131,7 @@ public class VoiceMessageHandler {
 
     
     /**
-     * ✅ ULTIMATE VOICE BUTTON FINDER
+     *  ULTIMATE VOICE BUTTON FINDER
      */
     private WebElement findVoiceButtonUltimate() {
         List<By> locators = Arrays.asList(
@@ -157,7 +157,7 @@ public class VoiceMessageHandler {
                 for (WebElement element : elements) {
                     try {
                         if (element.isDisplayed() && element.isEnabled()) {
-                            System.out.println("   ✅ Found voice button with: " + locator);
+                            System.out.println("    Found voice button with: " + locator);
                             return element;
                         }
                     } catch (Exception e) {
@@ -173,7 +173,7 @@ public class VoiceMessageHandler {
     }
     
     /**
-     * ✅ FIND VOICE BUTTON BY POSITION (When locators fail)
+     *  FIND VOICE BUTTON BY POSITION (When locators fail)
      */
     private WebElement findVoiceButtonByPosition() {
         try {
@@ -215,7 +215,7 @@ public class VoiceMessageHandler {
                         
                         // If it looks like a button or image button
                         if (className.contains("Button") || className.contains("ImageView")) {
-                            System.out.println("   ✅ Likely voice button found by position!");
+                            System.out.println("    Likely voice button found by position!");
                             return element;
                         }
                     }
@@ -238,7 +238,7 @@ public class VoiceMessageHandler {
     }
     
     /**
-     * ✅ ULTIMATE VOICE BUTTON HOLD
+     *  ULTIMATE VOICE BUTTON HOLD
      */
     private boolean holdVoiceButtonUltimate(WebElement voiceButton, int durationMs) {
         try {
@@ -285,7 +285,7 @@ public class VoiceMessageHandler {
                 // Perform
                 driver.perform(Collections.singletonList(sequence));
                 
-                System.out.println("   ✅ Hold completed using W3C Actions");
+                System.out.println("    Hold completed using W3C Actions");
                 
                 // Verify recording
                 Thread.sleep(1000);
@@ -315,7 +315,7 @@ public class VoiceMessageHandler {
                 Process process = Runtime.getRuntime().exec(cmd);
                 process.waitFor();
                 
-                System.out.println("   ✅ Hold completed using ADB");
+                System.out.println("    Hold completed using ADB");
                 
                 Thread.sleep(1000);
                 return verifyRecordingStarted();
@@ -338,7 +338,7 @@ public class VoiceMessageHandler {
     }
     
     /**
-     * ✅ VERIFY RECORDING STARTED
+     *  VERIFY RECORDING STARTED
      */
     private boolean verifyRecordingStarted() {
         try {
@@ -387,7 +387,7 @@ public class VoiceMessageHandler {
     }
     
     /**
-     * ✅ ULTIMATE SEND VOICE MESSAGE
+     *  ULTIMATE SEND VOICE MESSAGE
      */
     private boolean sendVoiceMessageUltimate() {
         try {
@@ -409,7 +409,7 @@ public class VoiceMessageHandler {
                 try {
                     WebElement sendButton = wait.until(ExpectedConditions.elementToBeClickable(locator));
                     if (sendButton != null && sendButton.isDisplayed()) {
-                        System.out.println("   ✅ Found send button with: " + locator);
+                        System.out.println("    Found send button with: " + locator);
                         sendButton.click();
                         Thread.sleep(1000);
                         return true;
@@ -453,13 +453,13 @@ public class VoiceMessageHandler {
     private void openMessagingApp() throws Exception {
         try {
             driver.activateApp("com.google.android.apps.messaging");
-            System.out.println("   ✅ Messaging app activated");
+            System.out.println("    Messaging app activated");
         } catch (Exception e) {
             // Use ADB command
             Map<String, Object> params = new HashMap<>();
             params.put("command", "am start -n com.google.android.apps.messaging/com.google.android.apps.messaging.ui.ConversationListActivity");
             driver.executeScript("mobile: shell", params);
-            System.out.println("   ✅ Messaging app opened via shell");
+            System.out.println("    Messaging app opened via shell");
         }
         Thread.sleep(5000);
     }
@@ -467,7 +467,7 @@ public class VoiceMessageHandler {
     private void ensureMainScreen() throws Exception {
         try {
             driver.findElement(By.id("com.google.android.apps.messaging:id/start_chat_fab"));
-            System.out.println("   ✅ Already on main screen");
+            System.out.println("    Already on main screen");
         } catch (Exception e) {
             // Press back up to 5 times
             for (int i = 0; i < 5; i++) {
@@ -478,7 +478,7 @@ public class VoiceMessageHandler {
                     // Check if we're on main screen
                     try {
                         driver.findElement(By.id("com.google.android.apps.messaging:id/start_chat_fab"));
-                        System.out.println("   ✅ Navigated to main screen");
+                        System.out.println("    Navigated to main screen");
                         return;
                     } catch (Exception ex) {
                         continue;
@@ -497,7 +497,7 @@ public class VoiceMessageHandler {
         );
         startChatButton.click();
         Thread.sleep(3000);
-        System.out.println("   ✅ New conversation started");
+        System.out.println("    New conversation started");
     }
     
     private void enterPhoneNumber(String phoneNumber) throws Exception {
@@ -532,7 +532,7 @@ public class VoiceMessageHandler {
         // Press Enter/Go
         driver.pressKey(new KeyEvent(AndroidKey.ENTER));
         Thread.sleep(3000);
-        System.out.println("   ✅ Phone number entered");
+        System.out.println("    Phone number entered");
     }
     
     private void tapAtPosition(int x, int y) {

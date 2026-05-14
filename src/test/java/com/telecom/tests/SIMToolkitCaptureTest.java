@@ -30,10 +30,10 @@ public class SIMToolkitCaptureTest extends BaseTest {
         System.out.println("   Time: " + new java.util.Date());
         
         if (!isAppiumServerRunning()) {
-            System.out.println("🔄 Starting Appium server...");
+            System.out.println(" Starting Appium server...");
             AppiumConfig.startAppiumServer();
         } else {
-            System.out.println("✅ Using existing Appium server");
+            System.out.println(" Using existing Appium server");
         }
     }
     
@@ -92,7 +92,7 @@ public class SIMToolkitCaptureTest extends BaseTest {
             deviceUtils = new DeviceUtils(driver);
             screenshotUtils = new ScreenshotUtils(driver);
             
-            // ✅ CRITICAL: Only clear screenshots in the FIRST test method
+            //  CRITICAL: Only clear screenshots in the FIRST test method
             if (getCurrentTestMethodName().equals("completeSIMToolkitCaptureFlow")) {
                 screenshotUtils.clearScreenshots();
                 System.out.println("🗑️ Screenshots cleared for fresh test run");
@@ -101,7 +101,7 @@ public class SIMToolkitCaptureTest extends BaseTest {
             // Pass the shared screenshotUtils to SIMToolkitPage
             simToolkitPage = new SIMToolkitPage(driver, screenshotUtils, deviceId);
             
-            System.out.println("\n✅ Test environment ready");
+            System.out.println("\n Test environment ready");
             System.out.println("   Device: " + deviceName);
             System.out.println("   UDID: " + udid);
             System.out.println("   Platform: Android " + platformVersion);
@@ -132,7 +132,7 @@ public class SIMToolkitCaptureTest extends BaseTest {
 //            
 //            if (simToolkitLaunched) {
 //                screenshotUtils.captureScreenshot("SIM Toolkit Launch");
-//                System.out.println("✅ SIM Toolkit launched successfully via ADB");
+//                System.out.println(" SIM Toolkit launched successfully via ADB");
 //            } else {
 //                System.err.println("❌ Failed to launch SIM Toolkit");
 //                throw new RuntimeException("Failed to launch SIM Toolkit");
@@ -176,7 +176,7 @@ public class SIMToolkitCaptureTest extends BaseTest {
         System.out.println("═".repeat(70));
         
         try {
-            // ✅ Set test start time
+            //  Set test start time
             screenshotUtils.setTestStartTime();
             
             // Step 1: Launch SIM Toolkit
@@ -185,7 +185,7 @@ public class SIMToolkitCaptureTest extends BaseTest {
             
             if (simToolkitLaunched) {
                 screenshotUtils.captureScreenshot("SIM Toolkit Launch");
-                System.out.println("✅ SIM Toolkit launched successfully via ADB");
+                System.out.println(" SIM Toolkit launched successfully via ADB");
             } else {
                 System.err.println("❌ Failed to launch SIM Toolkit");
                 throw new RuntimeException("Failed to launch SIM Toolkit");
@@ -206,7 +206,7 @@ public class SIMToolkitCaptureTest extends BaseTest {
             // Step 6: Validate Roaming sub-menus
             simToolkitPage.validateRoamingSubMenus();
             
-            // ✅ Set test end time
+            //  Set test end time
             screenshotUtils.setTestEndTime();
             
             // Step 7: Verify screenshots
@@ -253,7 +253,7 @@ public class SIMToolkitCaptureTest extends BaseTest {
             }
             
             if (exitCode == 0) {
-                System.out.println("✅ ADB command executed successfully");
+                System.out.println(" ADB command executed successfully");
                 System.out.println("  Output: " + output.toString().trim());
                 Thread.sleep(5000);
                 return isSIMToolkitVisible();
@@ -278,7 +278,7 @@ public class SIMToolkitCaptureTest extends BaseTest {
             
             for (String indicator : indicators) {
                 if (deviceUtils.isElementPresent(indicator)) {
-                    System.out.println("✅ Found indicator: " + indicator);
+                    System.out.println(" Found indicator: " + indicator);
                     return true;
                 }
             }
@@ -288,7 +288,7 @@ public class SIMToolkitCaptureTest extends BaseTest {
                 pageSource.contains("stk") || 
                 pageSource.contains("vodafone") ||
                 pageSource.contains("vi")) {
-                System.out.println("✅ SIM Toolkit content found in page source");
+                System.out.println(" SIM Toolkit content found in page source");
                 return true;
             }
             
@@ -322,7 +322,7 @@ public class SIMToolkitCaptureTest extends BaseTest {
         System.out.println("   Missing screenshots: " + (totalRequired - capturedCount));
         
         if (capturedCount >= totalRequired) {
-            System.out.println("\n✅ ALL SCREENSHOTS CAPTURED SUCCESSFULLY!");
+            System.out.println("\n ALL SCREENSHOTS CAPTURED SUCCESSFULLY!");
         } else {
             System.out.println("\n⚠️ SOME SCREENSHOTS ARE MISSING!");
             
@@ -345,7 +345,7 @@ public class SIMToolkitCaptureTest extends BaseTest {
         
         System.out.println("\n📱 SIM Configuration:");
         System.out.println("   Type: " + detectedSimType.getDescription());
-        System.out.println("   Vi Branding: " + (brandingVerified ? "✅ Verified" : "❌ Not Found"));
+        System.out.println("   Vi Branding: " + (brandingVerified ? " Verified" : "❌ Not Found"));
         
         int passed = (int) verificationResults.values().stream()
             .filter(Boolean::booleanValue)
@@ -353,13 +353,13 @@ public class SIMToolkitCaptureTest extends BaseTest {
         
         System.out.println("\n📸 Screenshot Status:");
         System.out.println("   Captured: " + passed + "/" + verificationResults.size());
-        System.out.println("   Overall: " + (passed >= verificationResults.size() ? "✅ PASS" : "❌ FAIL"));
+        System.out.println("   Overall: " + (passed >= verificationResults.size() ? " PASS" : "❌ FAIL"));
         
         System.out.println("\n📋 Mandatory Screenshot Checklist:");
         System.out.println("   " + "─".repeat(60));
         
         for (Map.Entry<String, Boolean> entry : verificationResults.entrySet()) {
-            String status = entry.getValue() ? "✅" : "❌";
+            String status = entry.getValue() ? "" : "❌";
             System.out.println("   " + status + " " + entry.getKey());
         }
         

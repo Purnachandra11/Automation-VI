@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * ✅ ENHANCED SMS & VOICE MESSAGE TEST CLASS
+ *  ENHANCED SMS & VOICE MESSAGE TEST CLASS
  * Supports: OUTGOING/INCOMING, Individual/Group, Text/Voice
  */
 public class SMSTest {
@@ -80,7 +80,7 @@ public class SMSTest {
             System.out.println("│   Device ID: " + String.format("%-48s", bPartyDeviceId) + "│");
             System.out.println("│   Number:    " + String.format("%-48s", bPartyNumber) + "│");
             System.out.println("│   Model:     " + String.format("%-48s", ADBHelper.getDeviceModel(bPartyDeviceId)) + "│");
-            System.out.println("│   Status:    ✅ Full bidirectional SMS support                 │");
+            System.out.println("│   Status:     Full bidirectional SMS support                 │");
         } else {
             System.out.println("│ B-Party (Secondary): ⚠️  NOT CONFIGURED                         │");
             System.out.println("│   Status:    ⚠️  INCOMING SMS tests will be SKIPPED            │");
@@ -104,11 +104,11 @@ public class SMSTest {
                     aPartyDeviceId, aPartyNumber,
                     bPartyDeviceId, bPartyNumber
                 );
-                System.out.println("✅ Both devices configured - Full bidirectional SMS support enabled");
+                System.out.println(" Both devices configured - Full bidirectional SMS support enabled");
             } else {
                 // Initialize with A-Party only
                 System.out.println("⚠️  Only A-Party configured");
-                System.out.println("   📤 OUTGOING tests: ✅ Supported");
+                System.out.println("   📤 OUTGOING tests:  Supported");
                 System.out.println("   📥 INCOMING tests: ⚠️  Will be SKIPPED");
                 
                 // Still initialize DeviceManager with A-Party
@@ -124,7 +124,7 @@ public class SMSTest {
         // STEP 6: Start Appium
         System.out.println("\n🔧 STARTING APPIUM SERVICE...");
         DriverManager.startAppiumService();
-        System.out.println("✅ Appium service started");
+        System.out.println(" Appium service started");
         
         // STEP 7: Initialize driver
         System.out.println("\n💬 INITIALIZING MESSAGING DRIVER FOR A-PARTY...");
@@ -134,12 +134,12 @@ public class SMSTest {
             throw new Exception("❌ Failed to initialize driver for A-Party");
         }
         
-        System.out.println("✅ Driver initialized successfully");
+        System.out.println(" Driver initialized successfully");
         
         // STEP 8: Initialize SMS executor
         System.out.println("\n🔧 INITIALIZING SMS TEST EXECUTOR...");
         smsExecutor = new CompleteSMSTestExecutor(driver, aPartyDeviceId);
-        System.out.println("✅ SMS Test Executor ready");
+        System.out.println(" SMS Test Executor ready");
         
         // STEP 9: Report setup complete
         ProgressReporter.reportSMSProgress(
@@ -150,7 +150,7 @@ public class SMSTest {
             5.0
         );
         
-        System.out.println("\n✅✅✅ SMS TEST SETUP COMPLETED SUCCESSFULLY ✅✅✅");
+        System.out.println("\n SMS TEST SETUP COMPLETED SUCCESSFULLY ");
         System.out.println("=".repeat(100) + "\n");
     }
     
@@ -217,7 +217,7 @@ public class SMSTest {
     }
     
     /**
-     * ✅ PRINT COMPREHENSIVE TEST SUMMARY
+     *  PRINT COMPREHENSIVE TEST SUMMARY
      */
     private void printTestSummary(List<Map<String, Object>> results) {
         System.out.println("\n" + "=".repeat(100));
@@ -257,7 +257,7 @@ public class SMSTest {
         System.out.println("│ OVERALL TEST STATISTICS                                         │");
         System.out.println("├─────────────────────────────────────────────────────────────────┤");
         System.out.println("│ Total Tests:          " + String.format("%-41d", total) + "│");
-        System.out.println("│ ✅ Passed:            " + String.format("%-41d", passed) + "│");
+        System.out.println("│  Passed:            " + String.format("%-41d", passed) + "│");
         System.out.println("│ ⚠️  Partial:           " + String.format("%-41d", partial) + "│");
         System.out.println("│ ❌ Failed:            " + String.format("%-41d", failed) + "│");
         System.out.println("│ 🚨 Error:             " + String.format("%-41d", error) + "│");
@@ -282,7 +282,7 @@ public class SMSTest {
         System.out.println("│ MESSAGE DELIVERY STATISTICS                                     │");
         System.out.println("├─────────────────────────────────────────────────────────────────┤");
         System.out.println("│ Total Messages Sent:  " + String.format("%-41d", totalSMS) + "│");
-        System.out.println("│ ✅ Delivered:         " + String.format("%-41d", successfulSMS) + "│");
+        System.out.println("│  Delivered:         " + String.format("%-41d", successfulSMS) + "│");
         System.out.println("│ ❌ Failed:            " + String.format("%-41d", (totalSMS - successfulSMS)) + "│");
         
         if (totalSMS > 0) {
@@ -362,7 +362,7 @@ public class SMSTest {
             System.out.println("│ ⏱️  Min Time:          " + String.format("%-35s", formatTime(minTime)) + "│");
             System.out.println("│ ⏱️  Max Time:          " + String.format("%-35s", formatTime(maxTime)) + "│");
             System.out.println("│ ⏱️  Avg Time:          " + String.format("%-35s", formatTime((long) avgTime)) + "│");
-            System.out.println("│ ✅ Within SLA (≤60s): " + String.format("%-41d", withinSLA) + "│");
+            System.out.println("│  Within SLA (≤60s): " + String.format("%-41d", withinSLA) + "│");
             System.out.println("│ ❌ Exceeds SLA (>60s):" + String.format("%-41d", exceedsSLA) + "│");
             System.out.println("└─────────────────────────────────────────────────────────────────┘");
         }
@@ -386,7 +386,7 @@ public class SMSTest {
     }
     
     /**
-     * ✅ FORMAT TIME for display
+     *  FORMAT TIME for display
      */
     private String formatTime(long milliseconds) {
         if (milliseconds < 1000) {
@@ -398,7 +398,7 @@ public class SMSTest {
     }
     
     /**
-     * ✅ VALIDATE TEST RESULTS
+     *  VALIDATE TEST RESULTS
      */
     private void validateTestResults(List<Map<String, Object>> results) {
         System.out.println("\n🔍 VALIDATING TEST RESULTS...");
@@ -413,7 +413,7 @@ public class SMSTest {
             }
         }
         
-        System.out.println("✅ Validation complete");
+        System.out.println(" Validation complete");
     }
     
     @AfterClass(alwaysRun = true)
@@ -425,7 +425,7 @@ public class SMSTest {
         try {
             if (smsExecutor != null) {
                 smsExecutor.cleanup();
-                System.out.println("✅ SMS Executor cleanup completed");
+                System.out.println(" SMS Executor cleanup completed");
             }
         } catch (Exception e) {
             System.out.println("⚠️  SMS Executor cleanup issue: " + e.getMessage());
@@ -434,7 +434,7 @@ public class SMSTest {
         try {
             if (driver != null) {
                 DriverManager.quitDriver();
-                System.out.println("✅ Main driver quit successfully");
+                System.out.println(" Main driver quit successfully");
             }
         } catch (Exception e) {
             System.out.println("⚠️  Main driver quit issue: " + e.getMessage());
@@ -442,12 +442,12 @@ public class SMSTest {
         
         try {
             DriverManager.stopAppiumService();
-            System.out.println("✅ Appium service stopped");
+            System.out.println(" Appium service stopped");
         } catch (Exception e) {
             System.out.println("⚠️  Appium service stop issue: " + e.getMessage());
         }
         
         System.out.println("=".repeat(100));
-        System.out.println("✅ TEARDOWN COMPLETE");
+        System.out.println(" TEARDOWN COMPLETE");
     }
 }

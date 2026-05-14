@@ -7,13 +7,13 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * ✅ FIXED DEVICE MANAGER
+ *  FIXED DEVICE MANAGER
  * Fixed auto-answer availability detection
  */
 public class DeviceManager {
     private static Map<String, String> deviceMap = new HashMap<>();
     private static Map<String, ImprovedADBAutoAnswer> autoAnswerServices = new HashMap<>();
-    private static Set<String> autoAnswerNumbers = new HashSet<>();  // ✅ CHANGED: Only store phone numbers
+    private static Set<String> autoAnswerNumbers = new HashSet<>();  //  CHANGED: Only store phone numbers
     
     /**
      * Initialize devices with parameters
@@ -31,16 +31,16 @@ public class DeviceManager {
 		// Configure A-party
 		if (aPartyDeviceId != null && aPartyNumber != null) {
 		deviceMap.put(aPartyNumber, aPartyDeviceId);
-		autoAnswerNumbers.add(aPartyNumber);  // ✅ CRITICAL FIX: Add A-Party too!
-		System.out.println("✅ A-Party: " + aPartyNumber + " -> " + aPartyDeviceId);
+		autoAnswerNumbers.add(aPartyNumber);  //  CRITICAL FIX: Add A-Party too!
+		System.out.println(" A-Party: " + aPartyNumber + " -> " + aPartyDeviceId);
 		System.out.println("🤖 Auto-Answer Enabled for A-Party: " + aPartyNumber);
 		}
 		
 		// Configure B-party
 		if (bPartyDeviceId != null && bPartyNumber != null) {
 		deviceMap.put(bPartyNumber, bPartyDeviceId);
-		autoAnswerNumbers.add(bPartyNumber);  // ✅ Already correct
-		System.out.println("✅ B-Party: " + bPartyNumber + " -> " + bPartyDeviceId);
+		autoAnswerNumbers.add(bPartyNumber);  //  Already correct
+		System.out.println(" B-Party: " + bPartyNumber + " -> " + bPartyDeviceId);
 		System.out.println("🤖 Auto-Answer Enabled for B-Party: " + bPartyNumber);
 		}
 		
@@ -53,7 +53,7 @@ public class DeviceManager {
 		}
     
     /**
-     * ✅ FIXED: Auto-initialize from system properties
+     *  FIXED: Auto-initialize from system properties
      */
     public static void initializeDevices() {
         String aPartyDevice = System.getProperty("aPartyDevice");
@@ -61,7 +61,7 @@ public class DeviceManager {
         String bPartyDevice = System.getProperty("bPartyDevice");
         String bPartyNumber = System.getProperty("bPartyNumber");
         
-        // ✅ CHANGED: Check all required properties
+        //  CHANGED: Check all required properties
         if (aPartyDevice == null || aPartyNumber == null) {
             System.out.println("⚠️ A-Party properties missing:");
             System.out.println("   -DaPartyDevice=" + aPartyDevice);
@@ -74,14 +74,14 @@ public class DeviceManager {
             System.out.println("   -DbPartyNumber=" + bPartyNumber);
         }
         
-        // ✅ CHANGED: Initialize even with partial data
+        //  CHANGED: Initialize even with partial data
         if (aPartyDevice != null && aPartyNumber != null) {
             if (bPartyDevice != null && bPartyNumber != null) {
                 initializeDevices(aPartyDevice, aPartyNumber, bPartyDevice, bPartyNumber);
             } else {
                 // Initialize with A-Party only
                 deviceMap.put(aPartyNumber, aPartyDevice);
-                System.out.println("✅ A-Party configured: " + aPartyNumber + " -> " + aPartyDevice);
+                System.out.println(" A-Party configured: " + aPartyNumber + " -> " + aPartyDevice);
                 System.out.println("⚠️ B-Party not configured - auto-answer will not be available");
             }
         } else {
@@ -90,7 +90,7 @@ public class DeviceManager {
     }
     
     /**
-     * ✅ SETUP AUTO-ANSWER
+     *  SETUP AUTO-ANSWER
      */
     public static boolean setupAutoAnswer(String bPartyNumber, String expectedCaller) {
         try {
@@ -100,7 +100,7 @@ public class DeviceManager {
             System.out.println("📞 B-Party Number: " + bPartyNumber);
             System.out.println("👤 Expected Caller: " + expectedCaller);
             
-            // ✅ ADDED: Debug info
+            //  ADDED: Debug info
             System.out.println("\n🔍 Debug Info:");
             System.out.println("   Device Map: " + deviceMap);
             System.out.println("   Auto-Answer Numbers: " + autoAnswerNumbers);
@@ -127,7 +127,7 @@ public class DeviceManager {
                 return false;
             }
             
-            System.out.println("✅ Found device ID: " + deviceId);
+            System.out.println(" Found device ID: " + deviceId);
             
             // Verify device is connected
             System.out.println("🔌 Checking device connection...");
@@ -138,7 +138,7 @@ public class DeviceManager {
                 System.out.println("   2. Verify device ID matches exactly");
                 System.out.println("   3. For WiFi: IP:PORT format (e.g., 100.99.81.3:39461)");
                 
-                // ✅ ADDED: Show connected devices
+                //  ADDED: Show connected devices
                 List<String> connected = ADBHelper.getConnectedDevices();
                 System.out.println("\n📱 Currently connected devices:");
                 if (connected.isEmpty()) {
@@ -153,11 +153,11 @@ public class DeviceManager {
                 return false;
             }
             
-            System.out.println("✅ Device is connected: " + deviceId);
+            System.out.println(" Device is connected: " + deviceId);
             
             // Stop existing service if any
             if (autoAnswerServices.containsKey(bPartyNumber)) {
-                System.out.println("🔄 Stopping existing auto-answer service...");
+                System.out.println(" Stopping existing auto-answer service...");
                 stopAutoAnswer(bPartyNumber);
             }
             
@@ -172,7 +172,7 @@ public class DeviceManager {
             
             // Verify service is running
             if (autoAnswer.isRunning()) {
-                System.out.println("\n✅✅✅ AUTO-ANSWER SERVICE STARTED SUCCESSFULLY ✅✅✅");
+                System.out.println("\n AUTO-ANSWER SERVICE STARTED SUCCESSFULLY ");
                 System.out.println("   Device: " + deviceId);
                 System.out.println("   Expected Caller: " + expectedCaller);
                 System.out.println("   Monitoring: Active");
@@ -194,7 +194,7 @@ public class DeviceManager {
     }
     
     /**
-     * ✅ STOP AUTO-ANSWER
+     *  STOP AUTO-ANSWER
      */
     public static void stopAutoAnswer(String bPartyNumber) {
         try {
@@ -202,7 +202,7 @@ public class DeviceManager {
             if (autoAnswer != null) {
                 autoAnswer.stop();
                 autoAnswerServices.remove(bPartyNumber);
-                System.out.println("✅ Auto-answer stopped for: " + bPartyNumber);
+                System.out.println(" Auto-answer stopped for: " + bPartyNumber);
             }
         } catch (Exception e) {
             System.out.println("⚠️ Auto-answer stop error: " + e.getMessage());
@@ -210,7 +210,7 @@ public class DeviceManager {
     }
     
     /**
-     * ✅ STOP ALL AUTO-ANSWER SERVICES
+     *  STOP ALL AUTO-ANSWER SERVICES
      */
     public static void stopAllAutoAnswerServices() {
         if (autoAnswerServices.isEmpty()) {
@@ -222,11 +222,11 @@ public class DeviceManager {
             stopAutoAnswer(number);
         }
         autoAnswerServices.clear();
-        System.out.println("✅ All auto-answer services stopped\n");
+        System.out.println(" All auto-answer services stopped\n");
     }
     
     /**
-     * ✅ FIXED: Check if auto-answer is available for a number
+     *  FIXED: Check if auto-answer is available for a number
      */
     public static boolean isAutoAnswerAvailable(String number) {
         // Simply check if the number is in our auto-answer list
@@ -241,7 +241,7 @@ public class DeviceManager {
     }
     
     /**
-     * ✅ IMPROVED: Check if device is connected via ADB
+     *  IMPROVED: Check if device is connected via ADB
      */
     public static boolean isDeviceConnected(String deviceId) {
         try {
@@ -257,7 +257,7 @@ public class DeviceManager {
                 String ipPrefix = deviceId.substring(0, deviceId.lastIndexOf(":"));
                 for (String device : devices) {
                     if (device.startsWith(ipPrefix)) {
-                        System.out.println("✅ Found wireless device match: " + device + " for " + deviceId);
+                        System.out.println(" Found wireless device match: " + device + " for " + deviceId);
                         return true;
                     }
                 }
@@ -266,7 +266,7 @@ public class DeviceManager {
             // Check if deviceId is partial match
             for (String device : devices) {
                 if (device.contains(deviceId) || deviceId.contains(device)) {
-                    System.out.println("✅ Found partial device match: " + device + " for " + deviceId);
+                    System.out.println(" Found partial device match: " + device + " for " + deviceId);
                     return true;
                 }
             }
@@ -292,7 +292,7 @@ public class DeviceManager {
             
             if (connected) {
                 String model = ADBHelper.getDeviceModel(deviceId);
-                System.out.println("   ✅ " + number + " (" + model + ") - Connected");
+                System.out.println("    " + number + " (" + model + ") - Connected");
             } else {
                 System.out.println("   ❌ " + number + " (" + deviceId + ") - NOT Connected");
                 allConnected = false;
@@ -335,7 +335,7 @@ public class DeviceManager {
                 String deviceId = entry.getValue();
                 boolean connected = isDeviceConnected(deviceId);
                 String model = connected ? ADBHelper.getDeviceModel(deviceId) : "Unknown";
-                String status = connected ? "✅ Connected" : "❌ Disconnected";
+                String status = connected ? " Connected" : "❌ Disconnected";
                 
                 System.out.println("   " + number + " -> " + deviceId);
                 System.out.println("      Model: " + model + " | Status: " + status);
@@ -356,13 +356,13 @@ public class DeviceManager {
         System.out.println("\n🤖 Auto-Answer Configuration:");
         System.out.println("   Enabled Numbers: " + autoAnswerNumbers);
         
-        System.out.println("\n🔄 Auto-Answer Services:");
+        System.out.println("\n Auto-Answer Services:");
         if (autoAnswerServices.isEmpty()) {
             System.out.println("   No active services");
         } else {
             for (Map.Entry<String, ImprovedADBAutoAnswer> entry : autoAnswerServices.entrySet()) {
                 ImprovedADBAutoAnswer service = entry.getValue();
-                String status = service.isRunning() ? "✅ Running" : "❌ Stopped";
+                String status = service.isRunning() ? " Running" : "❌ Stopped";
                 System.out.println("   " + entry.getKey() + " -> " + status + 
                                  " (Calls: " + service.getCallsAnswered() + ")");
             }

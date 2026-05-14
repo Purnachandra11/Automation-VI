@@ -16,7 +16,7 @@ public class DataUsageTestExecutor {
     private DataUsagePage dataUsagePage;
     private String deviceNumber;
     
-    // ✅ NEW: Cache for USSD results (same as calling test)
+    //  NEW: Cache for USSD results (same as calling test)
     private Map<String, Map<String, Object>> lastPostDataUSSDCache = new HashMap<>();
     
     // USSD Configuration (same as calling test)
@@ -30,7 +30,7 @@ public class DataUsageTestExecutor {
         this.deviceId = deviceId;
         this.dataUsagePage = new DataUsagePage(driver);
         
-        // ✅ Get device number from system properties
+        //  Get device number from system properties
         this.deviceNumber = System.getProperty("DaPartyNumber");
         if (this.deviceNumber == null || this.deviceNumber.isEmpty()) {
             this.deviceNumber = ConfigReader.getDialingNumber();
@@ -57,7 +57,7 @@ public class DataUsageTestExecutor {
             
             System.out.println("🌐 Starting Data Usage Tests for " + dataTests.size() + " scenarios");
             
-            // ✅ NEW: Initialize progress reporter for test suite
+            //  NEW: Initialize progress reporter for test suite
             ProgressReporter.initializeTestSuite(deviceId, dataTests.size());
             
             int testNumber = 1;
@@ -68,7 +68,7 @@ public class DataUsageTestExecutor {
                 System.out.println("🌐 Test " + testNumber + "/" + dataTests.size() + ": " + scenario);
                 System.out.println("=".repeat(80));
                 
-                // ✅ NEW: Report test start
+                //  NEW: Report test start
                 ProgressReporter.reportCallingProgress(
                     deviceId, 
                     deviceNumber, 
@@ -81,7 +81,7 @@ public class DataUsageTestExecutor {
                 Map<String, Object> result = executeSingleDataTest(dataTest);
                 testResults.add(result);
                 
-                // ✅ NEW: Report test completion
+                //  NEW: Report test completion
                 String status = (String) result.getOrDefault("finalStatus", "UNKNOWN");
                 boolean success = "SUCCESS".equals(status) || "PARTIAL".equals(status);
                 ProgressReporter.reportTestComplete(
@@ -101,7 +101,7 @@ public class DataUsageTestExecutor {
             System.out.println("❌ Data usage test execution failed: " + e.getMessage());
             e.printStackTrace();
             
-            // ✅ NEW: Report failure
+            //  NEW: Report failure
             ProgressReporter.reportTestComplete(
                 deviceId,
                 "data",
@@ -118,14 +118,14 @@ public class DataUsageTestExecutor {
         Map<String, Object> result = new HashMap<>();
         String timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
         
-        // ✅ NEW: Variable to track phone mismatch for report
+        //  NEW: Variable to track phone mismatch for report
         StringBuilder phoneMismatchWarning = new StringBuilder();
         
         try {
             result.putAll(dataTest);
             result.put("testTimestamp", timestamp);
             
-            // ✅ Get APN details before starting
+            //  Get APN details before starting
             Map<String, String> apnInfo = NetworkMonitor.getAPNInfo(deviceId);
             result.put("apnName", apnInfo.get("apnName"));
             result.put("apnType", apnInfo.get("apnType"));
@@ -146,7 +146,7 @@ public class DataUsageTestExecutor {
             System.out.println("   APN: " + apnInfo.get("apnName") + " (" + apnInfo.get("apn") + ")");
             System.out.println("   Network: " + networkInfo.get("networkType") + " | " + networkInfo.get("operator"));
             
-         // ✅ NEW: Report test details
+         //  NEW: Report test details
             ProgressReporter.reportCallingProgress(
                 deviceId,
                 deviceNumber,
@@ -156,10 +156,10 @@ public class DataUsageTestExecutor {
                 10.0
             );
             
-            // ✅ PRE-DATA USAGE BALANCE CHECK (using cached USSD)
+            //  PRE-DATA USAGE BALANCE CHECK (using cached USSD)
             System.out.println("\n💰 PRE-DATA BALANCE CHECK...");
             
-         // ✅ NEW: Report USSD check start
+         //  NEW: Report USSD check start
             ProgressReporter.reportCallingProgress(
                 deviceId,
                 deviceNumber,
@@ -170,7 +170,7 @@ public class DataUsageTestExecutor {
             );
             Map<String, Object> beforeUSSD = getOrPerformPreDataUSSD(deviceId, deviceNumber);
             
-         // ✅ NEW: Report USSD check completion
+         //  NEW: Report USSD check completion
             if (beforeUSSD != null && (Boolean) beforeUSSD.getOrDefault("success", false)) {
                 ProgressReporter.reportCallingProgress(
                     deviceId,
@@ -191,7 +191,7 @@ public class DataUsageTestExecutor {
                 result.put("beforeValidity", beforeUSSD.get("validity"));
                 result.put("senderMSISDN", beforeUSSD.get("phoneNumber"));
                 
-                // ✅ Capture phone number for mismatch check
+                //  Capture phone number for mismatch check
                 detectedPhoneNumber = cleanNumber((String) beforeUSSD.get("phoneNumber"));
                 result.put("ussdApartyNumber", detectedPhoneNumber);
                 
@@ -212,7 +212,7 @@ public class DataUsageTestExecutor {
                     result.put("preDataUSSDSource", "NEW_CHECK");
                 }
                 
-                System.out.println("   ✅ Before Balance: ₹" + beforeUSSD.get("balance"));
+                System.out.println("    Before Balance: ₹" + beforeUSSD.get("balance"));
                 if (beforeUSSD.get("validity") != null) {
                     System.out.println("   📅 Validity: " + beforeUSSD.get("validity"));
                 }
@@ -225,10 +225,10 @@ public class DataUsageTestExecutor {
             
             Thread.sleep(USSD_WAIT_BEFORE_DATA);
             
-            // ✅ Execute data usage scenario and get ACCURATE results from /proc/net/dev
+            //  Execute data usage scenario and get ACCURATE results from /proc/net/dev
             System.out.println("\n📡 Starting data consumption...");
             
-            // ✅ NEW: Report data consumption start
+            //  NEW: Report data consumption start
             ProgressReporter.reportCallingProgress(
                 deviceId,
                 deviceNumber,
@@ -264,7 +264,7 @@ public class DataUsageTestExecutor {
             System.out.println("📊 Consumed: " + String.format("%.4f GB (%.2f MB)", consumedGB, consumedMB));
             
             if (consumedBytes > 0) {
-                System.out.println("✅ Data consumption detected: " + consumedBytes + " bytes");
+                System.out.println(" Data consumption detected: " + consumedBytes + " bytes");
             }
             
             // Populate result with ACCURATE data from /proc/net/dev
@@ -281,13 +281,13 @@ public class DataUsageTestExecutor {
             result.put("dataSource", "ccmni1 (/proc/net/dev)");
             result.put("trafficGenerated", trafficGenerated ? "YES" : "NO");
             
-            // ✅ POST-DATA USAGE BALANCE CHECK
+            //  POST-DATA USAGE BALANCE CHECK
             String afterBalance = "N/A";
             if (deviceId != null) {
                 System.out.println("\n💰 POST-DATA BALANCE CHECK...");
                 System.out.println("   ⏳ Waiting " + (USSD_WAIT_AFTER_DATA/1000) + " seconds for balance update...");
                 
-             // ✅ NEW: Report waiting for balance update
+             //  NEW: Report waiting for balance update
                 ProgressReporter.reportCallingProgress(
                     deviceId,
                     deviceNumber,
@@ -299,7 +299,7 @@ public class DataUsageTestExecutor {
                 
                 Thread.sleep(USSD_WAIT_AFTER_DATA);
                 
-                // ✅ NEW: Report post-balance check
+                //  NEW: Report post-balance check
                 ProgressReporter.reportCallingProgress(
                     deviceId,
                     deviceNumber,
@@ -316,9 +316,9 @@ public class DataUsageTestExecutor {
                     result.put("afterBalance", afterBalance);
                     result.put("afterValidity", afterUSSD.get("validity"));
                     
-                    System.out.println("   ✅ After Balance: ₹" + afterBalance);
+                    System.out.println("    After Balance: ₹" + afterBalance);
                     
-                    // ✅ CACHE THIS RESULT FOR NEXT TEST
+                    //  CACHE THIS RESULT FOR NEXT TEST
                     cachePostDataUSSDForNextTest(deviceId, afterUSSD);
                     
                     // Calculate balance deduction
@@ -343,7 +343,7 @@ public class DataUsageTestExecutor {
                 }
             }
             
-            // ✅ Build detailed comments with phone mismatch warning at the beginning
+            //  Build detailed comments with phone mismatch warning at the beginning
             StringBuilder commentsBuilder = new StringBuilder();
             
             // Add phone mismatch warning if present
@@ -361,7 +361,7 @@ public class DataUsageTestExecutor {
                 (int)(targetDataGB * 1024)
             ));
             
-         // ✅ ADD APN DETAILS TO COMMENTS - This is the key change
+         //  ADD APN DETAILS TO COMMENTS - This is the key change
             if (apnInfo != null && apnInfo.containsKey("apnDetails")) {
                 commentsBuilder.append(" | ").append(apnInfo.get("apnDetails"));
             } else if (apnInfo != null) {
@@ -386,7 +386,7 @@ public class DataUsageTestExecutor {
             result.put("consumedGB", consumedGB);
             result.put("achievementPercent", achievementPercent);
             
-            // ✅ Ensure all required columns are present for the report
+            //  Ensure all required columns are present for the report
             result.put("apartyNumber", expectedPhoneNumber); 
             result.put("targetData", targetDataGB);
             result.put("duration", durationMinutes);
@@ -396,7 +396,7 @@ public class DataUsageTestExecutor {
             result.put("carrier", networkInfo.get("operator"));  
             result.put("timestamp", timestamp);
             
-         // ✅ NEW: Report test completion
+         //  NEW: Report test completion
             ProgressReporter.reportCallingProgress(
                 deviceId,
                 deviceNumber,
@@ -406,13 +406,13 @@ public class DataUsageTestExecutor {
                 100.0
             );
             
-            System.out.println("✅ Data usage test completed - Status: " + status);
+            System.out.println(" Data usage test completed - Status: " + status);
             
         } catch (Exception e) {
             System.out.println("❌ Data usage test failed: " + e.getMessage());
             e.printStackTrace();
             
-         // ✅ NEW: Report failure
+         //  NEW: Report failure
             ProgressReporter.reportTestComplete(
                 deviceId,
                 "data",
@@ -442,7 +442,7 @@ public class DataUsageTestExecutor {
         return result;
     }
     
-    // ✅ NEW: Cache POST-DATA USSD result for next test
+    //  NEW: Cache POST-DATA USSD result for next test
     private void cachePostDataUSSDForNextTest(String deviceId, Map<String, Object> postDataUSSD) {
         if (postDataUSSD != null && (Boolean) postDataUSSD.getOrDefault("success", false)) {
             Map<String, Object> cacheEntry = new HashMap<>(postDataUSSD);
@@ -457,7 +457,7 @@ public class DataUsageTestExecutor {
         }
     }
     
-    // ✅ NEW: Get PRE-DATA USSD (reuse POST-DATA from previous test if available)
+    //  NEW: Get PRE-DATA USSD (reuse POST-DATA from previous test if available)
     private Map<String, Object> getOrPerformPreDataUSSD(String deviceId, String phoneNumber) {
         try {
             // Check if we have cached POST-DATA USSD from previous test for this device
@@ -475,7 +475,7 @@ public class DataUsageTestExecutor {
                     String cleanCached = cleanNumber(cachedNumber);
                     
                     if (cleanExpected.equals(cleanCached)) {
-                        System.out.println("      ✅ Phone number verified: " + cleanCached);
+                        System.out.println("       Phone number verified: " + cleanCached);
                         
                         // Mark this as cached and return
                         cachedUSSD.put("cachedFromPreviousTest", true);
@@ -509,7 +509,7 @@ public class DataUsageTestExecutor {
                         System.out.println("      Expected: " + cleanExpected);
                         System.out.println("      Detected: " + cleanDetected);
                     } else {
-                        System.out.println("   ✅ Phone number verified: " + cleanDetected);
+                        System.out.println("    Phone number verified: " + cleanDetected);
                     }
                 }
             }
@@ -525,7 +525,7 @@ public class DataUsageTestExecutor {
         }
     }
     
-    // ✅ NEW: Perform post-data USSD check
+    //  NEW: Perform post-data USSD check
     private Map<String, Object> performPostDataUSSDCheck(String deviceId, String phoneNumber) {
         try {
             System.out.println("   📞 Checking balance after data usage...");
@@ -540,13 +540,13 @@ public class DataUsageTestExecutor {
         }
     }
     
-    // ✅ REUSED FROM CALLING TEST: Perform USSD check with retry
+    //  REUSED FROM CALLING TEST: Perform USSD check with retry
     private Map<String, Object> performUSSDCheckWithRetry(
             String deviceId, String ussdCode, String checkType, String expectedNumber) {
         
         System.out.println("\n💰 " + checkType + " BALANCE CHECK (with retry)...");
         
-     // ✅ NEW: Report USSD check start
+     //  NEW: Report USSD check start
         ProgressReporter.reportCallingProgress(
             deviceId,
             expectedNumber,
@@ -563,9 +563,9 @@ public class DataUsageTestExecutor {
             attempt++;
             
             try {
-                System.out.println("   🔄 Attempt " + attempt + "/" + MAX_USSD_RETRIES);
+                System.out.println("    Attempt " + attempt + "/" + MAX_USSD_RETRIES);
                 
-                // ✅ NEW: Report retry attempt
+                //  NEW: Report retry attempt
                 ProgressReporter.reportCallingProgress(
                     deviceId,
                     expectedNumber,
@@ -578,7 +578,7 @@ public class DataUsageTestExecutor {
                 if (!ADBHelper.isDeviceConnected(deviceId)) {
                     System.out.println("   ❌ Device disconnected: " + deviceId);
                     
-                    // ✅ NEW: Report device disconnected
+                    //  NEW: Report device disconnected
                     ProgressReporter.reportCallingProgress(
                         deviceId,
                         expectedNumber,
@@ -597,7 +597,7 @@ public class DataUsageTestExecutor {
                 ussdResult = USSDService.checkBalanceAndValidity(deviceId, ussdCode);
                 
                 if (ussdResult != null && (Boolean) ussdResult.getOrDefault("success", false)) {
-                	 // ✅ NEW: Report successful USSD
+                	 //  NEW: Report successful USSD
                     ProgressReporter.reportCallingProgress(
                         deviceId,
                         expectedNumber,
@@ -632,7 +632,7 @@ public class DataUsageTestExecutor {
                         ussdResult.put("phoneNumber", phoneNumber);
                     }
                     
-                    System.out.println("   ✅ USSD SUCCESS");
+                    System.out.println("    USSD SUCCESS");
                     System.out.println("      Phone: " + phoneNumber);
                     System.out.println("      Balance: " + ussdResult.get("balance"));
                     
@@ -651,7 +651,7 @@ public class DataUsageTestExecutor {
                 
             } catch (Exception e) {
             	
-            	// ✅ NEW: Report USSD error
+            	//  NEW: Report USSD error
                 ProgressReporter.reportCallingProgress(
                     deviceId,
                     expectedNumber,
@@ -674,7 +674,7 @@ public class DataUsageTestExecutor {
         
         System.out.println("   ⚠️ USSD check failed after " + MAX_USSD_RETRIES + " attempts");
         
-        // ✅ NEW: Report USSD failure after retries
+        //  NEW: Report USSD failure after retries
         ProgressReporter.reportCallingProgress(
             deviceId,
             expectedNumber,
@@ -695,7 +695,7 @@ public class DataUsageTestExecutor {
         return failureResult;
     }
     
-    // ✅ REUSED FROM CALLING TEST: Parse balance
+    //  REUSED FROM CALLING TEST: Parse balance
     private Double parseBalance(Object balanceObj) {
         if (balanceObj == null) return null;
         
@@ -716,7 +716,7 @@ public class DataUsageTestExecutor {
         }
     }
     
-    // ✅ REUSED FROM CALLING TEST: Clean phone number
+    //  REUSED FROM CALLING TEST: Clean phone number
     private String cleanNumber(String number) {
         if (number == null) return "";
         
@@ -732,7 +732,7 @@ public class DataUsageTestExecutor {
     }
     
     /**
-     * ✅ Generate data usage reports with ACCURATE data
+     *  Generate data usage reports with ACCURATE data
      */
     private void generateDataUsageReport(List<Map<String, Object>> results) {
         try {
@@ -780,7 +780,7 @@ public class DataUsageTestExecutor {
             System.out.println("📊 DATA USAGE TEST SUMMARY");
             System.out.println("=".repeat(50));
             System.out.println("   Total Tests: " + totalTests);
-            System.out.println("   ✅ Success: " + successCount);
+            System.out.println("    Success: " + successCount);
             System.out.println("   ⚠️ Partial: " + partialCount);
             System.out.println("   ❌ Failed: " + failedCount);
             System.out.println("   📱 Total Consumed: " + String.format("%.4f GB (%.2f MB)", 
@@ -794,7 +794,7 @@ public class DataUsageTestExecutor {
             String excelReport = ReportGenerator.generateDataUsageExcelReport(results);
             String htmlReport = ReportGenerator.generateDataUsageHTMLReport(results);
             
-            System.out.println("\n✅ Data Usage Reports Generated:");
+            System.out.println("\n Data Usage Reports Generated:");
             System.out.println("   📄 Excel: " + excelReport);
             System.out.println("   🌐 HTML: " + htmlReport);
             

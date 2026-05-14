@@ -601,7 +601,7 @@
     </div>
 
     <div class="control-buttons" id="controlButtons" style="display: none;">
-      <button class="btn btn-primary" onclick="refreshPage()">🔄 Refresh</button>
+      <button class="btn btn-primary" onclick="refreshPage()"> Refresh</button>
       <button class="btn btn-secondary" onclick="closeWindow()">❌ Close</button>
       <button class="btn btn-primary" onclick="openInDashboard()">📊 Back to Dashboard</button>
     </div>
@@ -653,7 +653,7 @@
       ws = new WebSocket('ws://localhost:5174');
       
       ws.onopen = () => {
-        console.log('✅ WebSocket connected for device:', deviceId);
+        console.log(' WebSocket connected for device:', deviceId);
         addLog(`📡 Connected to test server`, 'success');
         updateDeviceStatus('connected', 'Waiting for test to start...', 0);
         
@@ -686,7 +686,7 @@
       
       ws.onclose = () => {
         console.log('🔌 WebSocket disconnected, reconnecting in 3s...');
-        addLog('🔄 Connection lost, reconnecting...', 'warning');
+        addLog(' Connection lost, reconnecting...', 'warning');
         setTimeout(initWebSocket, 3000);
       };
     }
@@ -783,7 +783,7 @@
           if (device) {
             currentDevice = device;
             updatePageTitle(device);
-            addLog(`✅ Device found: ${device.model}`, 'success');
+            addLog(` Device found: ${device.model}`, 'success');
           } else {
             addLog('⚠️ Device not found in connected devices', 'warning');
           }
@@ -980,10 +980,10 @@
     function handleTestComplete(data) {
       deviceData.status = data.success ? 'completed' : 'failed';
       deviceData.progress = 100;
-      deviceData.action = data.success ? '✅ Completed Successfully' : '❌ Test Failed';
+      deviceData.action = data.success ? ' Completed Successfully' : '❌ Test Failed';
       
       addLog(
-        data.message || (data.success ? '✅ Test completed successfully' : '❌ Test failed'),
+        data.message || (data.success ? ' Test completed successfully' : '❌ Test failed'),
         data.success ? 'success' : 'error'
       );
       
@@ -997,7 +997,7 @@
       
       // Show notification
       if (data.success) {
-        showNotification('✅ Test Completed', 'Test execution completed successfully');
+        showNotification(' Test Completed', 'Test execution completed successfully');
       } else {
         showNotification('❌ Test Failed', data.message || 'Test execution failed');
       }
@@ -1309,7 +1309,7 @@
 
         if (data.files && data.files.length > 0) {
           deviceData.reports = data.files;
-          addLog(`✅ Found ${data.files.length} test report(s)`, 'success');
+          addLog(` Found ${data.files.length} test report(s)`, 'success');
           renderDeviceCard();
         } else {
           addLog('📄 No reports generated yet', 'info');
@@ -1345,7 +1345,7 @@
         a.remove();
         window.URL.revokeObjectURL(url);
         
-        addLog(`✅ Downloaded: ${fileName}`, 'success');
+        addLog(` Downloaded: ${fileName}`, 'success');
       } catch (error) {
         console.error('Download error:', error);
         addLog(`❌ Download failed: ${error.message}`, 'error');
@@ -1363,7 +1363,7 @@
         'calling-data': '📞📥',
         'sms-data': '💬📥',
         'all': '📊',
-        'unknown': '🔄'
+        'unknown': ''
       };
       return emojis[testType] || '📊';
     }
@@ -1384,7 +1384,7 @@
         'COMPOSING': '✏️',
         'TYPING': '⌨️',
         'SENDING': '📤',
-        'DELIVERED': '✅',
+        'DELIVERED': '',
         'FAILED': '❌',
         'ERROR': '⚠️'
       };
@@ -1416,7 +1416,7 @@
           <h3>Error</h3>
           <p>${message}</p>
           <div class="control-buttons" style="justify-content: center; margin-top: 20px;">
-            <button class="btn btn-primary" onclick="refreshPage()">🔄 Retry</button>
+            <button class="btn btn-primary" onclick="refreshPage()"> Retry</button>
             <button class="btn btn-secondary" onclick="closeWindow()">✕ Close</button>
           </div>
         </div>

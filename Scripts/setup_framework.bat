@@ -10,7 +10,7 @@ mkdir test-output\screenshots
 mkdir test-output\extent-reports
 mkdir testng-xml
 
-echo ✅ Directory structure created
+echo  Directory structure created
 
 :: Generate sample config if not exists
 if not exist src\test\resources\config.properties (
@@ -19,7 +19,7 @@ if not exist src\test\resources\config.properties (
     echo appActivity=com.google.android.dialer.extensions.GoogleDialtactsActivity >> src\test\resources\config.properties
     echo dialing.number=+919876543210 >> src\test\resources\config.properties
     echo excelFilePath=src/test/resources/contacts.xlsx >> src\test\resources\config.properties
-    echo ✅ Sample config.properties created
+    echo  Sample config.properties created
 )
 
 echo.

@@ -89,7 +89,7 @@ public class NetworkMonitor {
             Map<String, String> networkInfo = getNetworkInfo(deviceId);
             String networkType = networkInfo.get("networkType");
             
-            System.out.println("✅ Network Type: " + networkType);
+            System.out.println(" Network Type: " + networkType);
             return true;
             
         } catch (Exception e) {
@@ -144,7 +144,7 @@ public class NetworkMonitor {
                 apnInfo.put("current", current);
                 apnInfo.put("apnDetails", apnComment.toString());  // Add the combined APN details
                 
-                System.out.println("✅ APN Info Retrieved: " + apnComment.toString());
+                System.out.println(" APN Info Retrieved: " + apnComment.toString());
                 
             } else {
                 // Fallback to preferapn if no Vodafone/IDEA APNs found
@@ -204,7 +204,7 @@ public class NetworkMonitor {
                 apnInfo.put("current", current);
                 apnInfo.put("apnDetails", apnComment.toString());
                 
-                System.out.println("✅ APN Info (Fallback): " + apnComment.toString());
+                System.out.println(" APN Info (Fallback): " + apnComment.toString());
             } else {
                 apnInfo.put("apnDetails", "APN: NOT_FOUND");
                 System.out.println("⚠️ No APN configuration found");

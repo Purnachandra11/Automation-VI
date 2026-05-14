@@ -135,9 +135,9 @@ public class CallScenarioDetector {
      */
     public static String getScenarioEmoji(int scenarioNumber) {
         switch (scenarioNumber) {
-            case 1: return "✅"; // Ringing
+            case 1: return ""; // Ringing
             case 2: return "📞"; // Busy
-            case 3: return "✅"; // Connected
+            case 3: return ""; // Connected
             case 4: return "⚠️"; // Dropped
             case 5: return "❌"; // Invalid
             case 6: return "📡"; // Network Error

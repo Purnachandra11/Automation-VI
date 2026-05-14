@@ -18,7 +18,7 @@ import java.util.*;
 import com.telecom.utils.ProgressReporter;
 
 /**
- * ✅ FIXED MESSAGING PAGE - Robust Voice Button Handling
+ *  FIXED MESSAGING PAGE - Robust Voice Button Handling
  */
 public class ImprovedMessagingPage {
     private AndroidDriver driver;
@@ -42,7 +42,7 @@ public class ImprovedMessagingPage {
     }
     
     /**
-     * ✅ INDIVIDUAL SMS (Text Message)
+     *  INDIVIDUAL SMS (Text Message)
      */
     public boolean sendIndividualSMS(String phoneNumber, String message) {
         try {
@@ -70,7 +70,7 @@ public class ImprovedMessagingPage {
                 reportProgress(phoneNumber, "FAILED", "SMS verification failed", 0);
             }
             
-            System.out.println("✅ Individual SMS sent status: " + sent);
+            System.out.println(" Individual SMS sent status: " + sent);
             return sent;
             
         } catch (Exception e) {
@@ -82,7 +82,7 @@ public class ImprovedMessagingPage {
     }
     
     /**
-     * ✅ INDIVIDUAL VOICE MESSAGE - Updated with unified verification
+     *  INDIVIDUAL VOICE MESSAGE - Updated with unified verification
      */
     public boolean sendIndividualVoiceMessageFixed(String phoneNumber) {
         try {
@@ -102,7 +102,7 @@ public class ImprovedMessagingPage {
                     reportProgress(phoneNumber, "VERIFICATION_FAILED", "Voice message verification failed", 50);
                 }
                 
-                System.out.println("✅ Voice message verification: " + verified);
+                System.out.println(" Voice message verification: " + verified);
                 return verified;
             } else {
                 reportProgress(phoneNumber, "FAILED", "Voice recording failed", 0);
@@ -117,7 +117,7 @@ public class ImprovedMessagingPage {
     }
     
     /**
-     * ✅ GROUP SMS (Text Message) - Updated with unified verification
+     *  GROUP SMS (Text Message) - Updated with unified verification
      */
     public Map<String, Object> sendGroupSMS(String groupName, String message) {
         Map<String, Object> result = new HashMap<>();
@@ -159,7 +159,7 @@ public class ImprovedMessagingPage {
             result.put("participantCount", participantCount);
             result.put("messageSent", sent);
             
-            System.out.println("✅ Group SMS completed - Participants: " + participantCount + ", Sent: " + sent);
+            System.out.println(" Group SMS completed - Participants: " + participantCount + ", Sent: " + sent);
             
         } catch (Exception e) {
             System.out.println("❌ Group SMS failed: " + e.getMessage());
@@ -174,7 +174,7 @@ public class ImprovedMessagingPage {
     
     
     /**
-     * ✅ GROUP VOICE MESSAGE
+     *  GROUP VOICE MESSAGE
      */
     public Map<String, Object> sendGroupVoiceMessage(String groupName) {
         Map<String, Object> result = new HashMap<>();
@@ -239,7 +239,7 @@ public class ImprovedMessagingPage {
             result.put("participantCount", participantCount);
             result.put("messageSent", sent);
             
-            System.out.println("✅ Group Voice Message completed - Participants: " + participantCount + ", Sent: " + sent);
+            System.out.println(" Group Voice Message completed - Participants: " + participantCount + ", Sent: " + sent);
             
         } catch (Exception e) {
             System.out.println("❌ Group Voice Message failed: " + e.getMessage());
@@ -259,20 +259,20 @@ public class ImprovedMessagingPage {
         
         try {
             driver.activateApp("com.google.android.apps.messaging");
-            System.out.println("  ✅ Messaging app activated");
+            System.out.println("   Messaging app activated");
         } catch (Exception e) {
             Map<String, Object> params = new HashMap<>();
             params.put("command", "am start -n com.google.android.apps.messaging/com.google.android.apps.messaging.ui.ConversationListActivity");
             driver.executeScript("mobile: shell", params);
-            System.out.println("  ✅ Messaging app opened via shell command");
+            System.out.println("   Messaging app opened via shell command");
         }
         
         Thread.sleep(5000);
-        System.out.println("  ✅ Messaging app ready");
+        System.out.println("   Messaging app ready");
     }
     
     /**
-     * ✅ ENSURE MAIN SCREEN - Optimized version when already on main screen
+     *  ENSURE MAIN SCREEN - Optimized version when already on main screen
      */
     private void ensureMainScreen() {
         try {
@@ -284,7 +284,7 @@ public class ImprovedMessagingPage {
                     By.id("com.google.android.apps.messaging:id/start_chat_fab")
                 ));
                 if (startChatFab.isDisplayed()) {
-                    System.out.println("  ✅ User is on main screen");
+                    System.out.println("   User is on main screen");
                     return;
                 }
             } catch (Exception e) {
@@ -293,7 +293,7 @@ public class ImprovedMessagingPage {
             }
             
             // ❌ NO BACK NAVIGATION - user is NOT on main screen!
-            System.out.println("  ✅ Proceeding with messaging (assuming user is on main screen)");
+            System.out.println("   Proceeding with messaging (assuming user is on main screen)");
             
         } catch (Exception e) {
             System.out.println("  ⚠️ Main screen check error: " + e.getMessage());
@@ -308,7 +308,7 @@ public class ImprovedMessagingPage {
         );
         startChatButton.click();
         Thread.sleep(3000);
-        System.out.println("  ✅ New conversation started");
+        System.out.println("   New conversation started");
     }
     
     private void enterPhoneNumber(String phoneNumber) throws Exception {
@@ -329,7 +329,7 @@ public class ImprovedMessagingPage {
         
         driver.pressKey(new KeyEvent(AndroidKey.ENTER));
         Thread.sleep(3000);
-        System.out.println("  ✅ Phone number entered");
+        System.out.println("   Phone number entered");
     }
     
     private void enterMessage(String message) throws Exception {
@@ -347,7 +347,7 @@ public class ImprovedMessagingPage {
         // Send keys
         messageInput.sendKeys(message);
         Thread.sleep(2000);
-        System.out.println("  ✅ Message entered");
+        System.out.println("   Message entered");
     }
     
     private void sendMessage() throws Exception {
@@ -358,11 +358,11 @@ public class ImprovedMessagingPage {
         );
         sendButton.click();
         Thread.sleep(3000);
-        System.out.println("  ✅ Message sent");
+        System.out.println("   Message sent");
     }
     
     /**
-     * ✅ ROBUST AUDIO BUTTON HOLD - MULTIPLE STRATEGIES
+     *  ROBUST AUDIO BUTTON HOLD - MULTIPLE STRATEGIES
      */
     private boolean holdAudioButtonRobust(int milliseconds) {
         try {
@@ -388,7 +388,7 @@ public class ImprovedMessagingPage {
                        .release()
                        .perform();
                 
-                System.out.println("  ✅ Audio button held using W3C Actions");
+                System.out.println("   Audio button held using W3C Actions");
                 return verifyRecordingStarted();
                 
             } catch (Exception e1) {
@@ -418,7 +418,7 @@ public class ImprovedMessagingPage {
                 
                 driver.perform(Collections.singletonList(holdSequence));
                 
-                System.out.println("  ✅ Audio button held using PointerInput");
+                System.out.println("   Audio button held using PointerInput");
                 return verifyRecordingStarted();
                 
             } catch (Exception e2) {
@@ -437,7 +437,7 @@ public class ImprovedMessagingPage {
                     String.valueOf(milliseconds)
                 }).waitFor();
                 
-                System.out.println("  ✅ Audio button held using ADB shell");
+                System.out.println("   Audio button held using ADB shell");
                 return verifyRecordingStarted();
                 
             } catch (Exception e3) {
@@ -454,7 +454,7 @@ public class ImprovedMessagingPage {
     }
     
     /**
-     * ✅ FIND AUDIO BUTTON WITH RETRY
+     *  FIND AUDIO BUTTON WITH RETRY
      */
     private WebElement findAudioButtonWithRetry() {
         List<By> locators = Arrays.asList(
@@ -468,7 +468,7 @@ public class ImprovedMessagingPage {
             try {
                 WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
                 if (element != null && element.isDisplayed() && element.isEnabled()) {
-                    System.out.println("  ✅ Found audio button using: " + locator);
+                    System.out.println("   Found audio button using: " + locator);
                     return element;
                 }
             } catch (Exception e) {
@@ -480,7 +480,7 @@ public class ImprovedMessagingPage {
     }
     
     /**
-     * ✅ VERIFY RECORDING STARTED
+     *  VERIFY RECORDING STARTED
      */
     private boolean verifyRecordingStarted() {
         try {
@@ -506,7 +506,7 @@ public class ImprovedMessagingPage {
     }
     
     /**
-     * ✅ ROBUST SEND VOICE MESSAGE - MULTIPLE STRATEGIES
+     *  ROBUST SEND VOICE MESSAGE - MULTIPLE STRATEGIES
      */
     private boolean sendVoiceMessageRobust() {
         try {
@@ -526,7 +526,7 @@ public class ImprovedMessagingPage {
                 try {
                     WebElement sendButton = wait.until(ExpectedConditions.elementToBeClickable(locator));
                     if (sendButton.isDisplayed() && sendButton.isEnabled()) {
-                        System.out.println("  ✅ Found send button using: " + locator);
+                        System.out.println("   Found send button using: " + locator);
                         sendButton.click();
                         Thread.sleep(3000);
                         return true;
@@ -604,7 +604,7 @@ public class ImprovedMessagingPage {
             if (!visibleGroups.isEmpty()) {
                 visibleGroups.get(0).click();
                 Thread.sleep(1500);
-                System.out.println("  ✅ Group found immediately");
+                System.out.println("   Group found immediately");
                 return true;
             }
             return false;
@@ -657,7 +657,7 @@ public class ImprovedMessagingPage {
             if (!groupElements.isEmpty()) {
                 groupElements.get(0).click();
                 Thread.sleep(3000);
-                System.out.println("  ✅ Group found and opened via search: " + groupName);
+                System.out.println("   Group found and opened via search: " + groupName);
                 return true;
             }
             
@@ -682,7 +682,7 @@ public class ImprovedMessagingPage {
                     if (conversationName.contains(groupName)) {
                         conversation.click();
                         Thread.sleep(3000);
-                        System.out.println("  ✅ Group found by scrolling");
+                        System.out.println("   Group found by scrolling");
                         return true;
                     }
                 } catch (Exception e) {

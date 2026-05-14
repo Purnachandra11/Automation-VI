@@ -43,7 +43,7 @@ public class SIMAutoLatchTestSuite {
         System.out.println("   B-Party Device: " + bPartyDeviceId);
         System.out.println("   B-Party Number: " + bPartyNumber);
         
-        System.out.println("✅ Setup completed successfully\n");
+        System.out.println(" Setup completed successfully\n");
     }
     
     @Test(description = "Execute all SIM auto-latch tests from Excel")
@@ -89,7 +89,7 @@ public class SIMAutoLatchTestSuite {
                 .filter(r -> "FAIL".equals(r.get("testResult")) || "ERROR".equals(r.get("testResult")))
                 .count();
             
-            System.out.println("✅ PASS (< 30s): " + passed);
+            System.out.println(" PASS (< 30s): " + passed);
             System.out.println("⚠️  MARGINAL (30-60s): " + marginal);
             System.out.println("🐌 SLOW (> 60s): " + slow);
             System.out.println("❌ FAILED: " + failed);
@@ -143,6 +143,6 @@ public class SIMAutoLatchTestSuite {
         System.out.println("\n" + "=".repeat(100));
         System.out.println("🧹 CLEANUP");
         System.out.println("=".repeat(100));
-        System.out.println("✅ Test execution completed");
+        System.out.println(" Test execution completed");
     }
 }

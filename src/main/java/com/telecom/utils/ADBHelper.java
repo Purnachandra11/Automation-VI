@@ -67,7 +67,7 @@ public class ADBHelper {
                 String result = executeCommand("adb connect " + deviceIdentifier);
                 boolean connected = result.contains("connected") || result.contains("already");
                 if (connected) {
-                    System.out.println("✅ Wireless connection established: " + deviceIdentifier);
+                    System.out.println(" Wireless connection established: " + deviceIdentifier);
                 } else {
                     System.out.println("❌ Wireless connection failed: " + result);
                 }
@@ -135,7 +135,7 @@ public class ADBHelper {
                 executeCommand("adb -s " + deviceId + " shell pm grant com.google.android.apps.messaging " + permission);
                 Thread.sleep(100); // Small delay between commands
             }
-            System.out.println("✅ Permissions granted successfully");
+            System.out.println(" Permissions granted successfully");
         } catch (Exception e) {
             System.out.println("⚠️ Some permissions couldn't be granted: " + e.getMessage());
         }
@@ -152,7 +152,7 @@ public class ADBHelper {
             Thread.sleep(2000);
             executeCommand("adb start-server");
             Thread.sleep(3000);
-            System.out.println("✅ ADB server restarted");
+            System.out.println(" ADB server restarted");
         } catch (Exception e) {
             System.out.println("❌ ADB restart failed: " + e.getMessage());
         }
@@ -164,7 +164,7 @@ public class ADBHelper {
  // Add these methods to ADBHelper.java
 
     /**
-     * ✅ NEW: Install auto-answer APK on device
+     *  NEW: Install auto-answer APK on device
      */
     public static boolean installAutoAnswerAPK(String deviceId, String apkPath) {
         try {
@@ -174,7 +174,7 @@ public class ADBHelper {
             String result = executeCommand(installCmd);
             
             boolean success = result.contains("Success") || result.contains("already installed");
-            System.out.println("✅ Auto-answer APK installed: " + success);
+            System.out.println(" Auto-answer APK installed: " + success);
             return success;
             
         } catch (Exception e) {
@@ -184,7 +184,7 @@ public class ADBHelper {
     }
 
     /**
-     * ✅ NEW: Start auto-answer service on device
+     *  NEW: Start auto-answer service on device
      */
     public static boolean startAutoAnswerService(String deviceId, String expectedCaller) {
         try {
@@ -199,7 +199,7 @@ public class ADBHelper {
             String result = executeCommand(startServiceCmd);
             
             boolean success = result.contains("Starting") || result.contains("Success") || result.contains("Service started");
-            System.out.println("✅ Auto-answer service started: " + success);
+            System.out.println(" Auto-answer service started: " + success);
             return success;
             
         } catch (Exception e) {
@@ -209,7 +209,7 @@ public class ADBHelper {
     }
 
     /**
-     * ✅ NEW: Stop auto-answer service on device
+     *  NEW: Stop auto-answer service on device
      */
     public static boolean stopAutoAnswerService(String deviceId) {
         try {
@@ -219,7 +219,7 @@ public class ADBHelper {
             String result = executeCommand(stopCmd);
             
             boolean success = result.contains("Stopping") || result.contains("Success") || result.isEmpty();
-            System.out.println("✅ Auto-answer service stopped: " + success);
+            System.out.println(" Auto-answer service stopped: " + success);
             return success;
             
         } catch (Exception e) {
@@ -229,7 +229,7 @@ public class ADBHelper {
     }
     
     /**
-     * ✅ IMPROVED: Get accurate mobile data usage with better methods
+     *  IMPROVED: Get accurate mobile data usage with better methods
      */
     public static Map<String, String> getDetailedMobileDataUsage(String deviceId) {
         Map<String, String> dataUsage = new HashMap<>();
@@ -242,7 +242,7 @@ public class ADBHelper {
             if (!netstatsData.equals("Unknown") && !netstatsData.equals("0.00 MB")) {
                 dataUsage.put("mobile_data_used", netstatsData);
                 dataUsage.put("source", "netstats");
-                System.out.println("✅ Got data usage from netstats: " + netstatsData);
+                System.out.println(" Got data usage from netstats: " + netstatsData);
                 return dataUsage;
             }
             
@@ -251,7 +251,7 @@ public class ADBHelper {
             if (!connectivityData.equals("Unknown") && !connectivityData.equals("0.00 MB")) {
                 dataUsage.put("mobile_data_used", connectivityData);
                 dataUsage.put("source", "connectivity");
-                System.out.println("✅ Got data usage from connectivity: " + connectivityData);
+                System.out.println(" Got data usage from connectivity: " + connectivityData);
                 return dataUsage;
             }
             
@@ -260,7 +260,7 @@ public class ADBHelper {
             if (!packageData.equals("Unknown")) {
                 dataUsage.put("mobile_data_used", packageData);
                 dataUsage.put("source", "package");
-                System.out.println("✅ Got data usage from package stats: " + packageData);
+                System.out.println(" Got data usage from package stats: " + packageData);
                 return dataUsage;
             }
             
@@ -287,7 +287,7 @@ public class ADBHelper {
     }
     
     /**
-     * ✅ NEW: Find device by characteristics (useful for auto-detection)
+     *  NEW: Find device by characteristics (useful for auto-detection)
      */
     public static String findDeviceByModelPattern(String pattern) {
         List<String> devices = getConnectedDevices();
@@ -301,7 +301,7 @@ public class ADBHelper {
         return null;
     }
     /**
-     * ✅ IMPROVED: Get netstats data with mobile-only filtering
+     *  IMPROVED: Get netstats data with mobile-only filtering
      */
     private static String getEnhancedNetstatsData(String deviceId) {
         try {
@@ -389,7 +389,7 @@ public class ADBHelper {
     }
 
     /**
-     * ✅ NEW: Get data from connectivity service
+     *  NEW: Get data from connectivity service
      */
     private static String getConnectivityServiceData(String deviceId) {
         try {
@@ -418,7 +418,7 @@ public class ADBHelper {
     }
 
     /**
-     * ✅ NEW: Get package-specific data usage for browsers
+     *  NEW: Get package-specific data usage for browsers
      */
     private static String getPackageDataUsage(String deviceId) {
         try {
@@ -456,11 +456,11 @@ public class ADBHelper {
     }
     
     /**
-     * ✅ NEW: Reset data usage statistics before test
+     *  NEW: Reset data usage statistics before test
      */
     public static boolean resetDataUsageStats(String deviceId) {
         try {
-            System.out.println("🔄 Resetting data usage statistics...");
+            System.out.println(" Resetting data usage statistics...");
             
             // Try multiple methods to reset stats
             String[] resetCommands = {
@@ -479,7 +479,7 @@ public class ADBHelper {
                 }
             }
             
-            System.out.println("✅ Data usage statistics reset attempted");
+            System.out.println(" Data usage statistics reset attempted");
             return true;
             
         } catch (Exception e) {
@@ -489,7 +489,7 @@ public class ADBHelper {
     }
     
     /**
-     * ✅ Format bytes to human readable format
+     *  Format bytes to human readable format
      */
     private static String formatBytes(long bytes) {
         if (bytes < 1024) {
@@ -504,7 +504,7 @@ public class ADBHelper {
     }
     
     /**
-     * ✅ NEW: Get battery level for device
+     *  NEW: Get battery level for device
      */
     public static String getBatteryLevel(String deviceId) {
         try {
@@ -532,7 +532,7 @@ public class ADBHelper {
     }
     
     /**
-     * ✅ ENHANCED: Get network type with more details
+     *  ENHANCED: Get network type with more details
      */
     public static String getNetworkType(String deviceId) {
         try {
@@ -555,7 +555,7 @@ public class ADBHelper {
     }
     
     /**
-     * ✅ NEW: Get carrier information
+     *  NEW: Get carrier information
      */
     public static String getCarrierName(String deviceId) {
         try {
@@ -567,7 +567,7 @@ public class ADBHelper {
     }
     
     /**
-     * ✅ NEW: Check if mobile data is enabled
+     *  NEW: Check if mobile data is enabled
      */
     public static boolean isMobileDataEnabled(String deviceId) {
         try {
@@ -579,7 +579,7 @@ public class ADBHelper {
     }
     
     /**
-     * ✅ NEW: Reset data usage statistics
+     *  NEW: Reset data usage statistics
      */
     public static boolean resetDataUsage(String deviceId) {
         try {
@@ -593,7 +593,7 @@ public class ADBHelper {
     }
     
     /**
-     * ✅ NEW: Get current data state
+     *  NEW: Get current data state
      */
     public static String getDataState(String deviceId) {
         try {
@@ -608,7 +608,7 @@ public class ADBHelper {
     }
     
     /**
-     * ✅ NEW: Force mobile data connection
+     *  NEW: Force mobile data connection
      */
     public static boolean forceMobileDataConnection(String deviceId) {
         try {
@@ -624,7 +624,7 @@ public class ADBHelper {
         }
     }
     /**
-     * ✅ NEW: Check if wget/curl are available on device
+     *  NEW: Check if wget/curl are available on device
      */
     public static boolean isDownloadToolAvailable(String deviceId, String tool) {
         try {
@@ -637,7 +637,7 @@ public class ADBHelper {
     }
 
     /**
-     * ✅ NEW: Install download tools if missing
+     *  NEW: Install download tools if missing
      */
     public static boolean installDownloadTools(String deviceId) {
         try {

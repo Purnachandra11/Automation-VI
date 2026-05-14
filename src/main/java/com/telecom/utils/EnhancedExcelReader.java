@@ -7,7 +7,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * ✅ CORRECTED EXCEL READER FOR YOUR FORMAT
+ *  CORRECTED EXCEL READER FOR YOUR FORMAT
  * Excel Columns: Test Type | A Party Number | Recipient | Group Name | Message type | Message | Direction
  */
 public class EnhancedExcelReader {
@@ -50,7 +50,7 @@ public class EnhancedExcelReader {
             }
             
             System.out.println("=".repeat(100));
-            System.out.println("✅ Successfully loaded " + testCases.size() + " SMS tests\n");
+            System.out.println(" Successfully loaded " + testCases.size() + " SMS tests\n");
             printSMSTestSummary(testCases);
             
         } catch (Exception e) {
@@ -62,7 +62,7 @@ public class EnhancedExcelReader {
     }
     
     /**
-     * ✅ EXTRACT SMS TEST CASE - CORRECTED FOR YOUR EXCEL FORMAT
+     *  EXTRACT SMS TEST CASE - CORRECTED FOR YOUR EXCEL FORMAT
      * 
      * Your Excel Format:
      * Column 0: Test Type (Individual/Group)
@@ -75,7 +75,7 @@ public class EnhancedExcelReader {
      */
     private static Map<String, Object> extractSMSTestCase(Row row, Map<String, Integer> columnMap) {
         try {
-            // ✅ READ COLUMNS ACCORDING TO YOUR EXCEL
+            //  READ COLUMNS ACCORDING TO YOUR EXCEL
             String testType = getCellValue(row.getCell(columnMap.getOrDefault("test type", 0))).toUpperCase();
             String aPartyNumber = cleanPhoneNumber(getCellValue(row.getCell(columnMap.getOrDefault("a party number", 1))));
             String recipient = cleanPhoneNumber(getCellValue(row.getCell(columnMap.getOrDefault("recipient", 2))));
@@ -84,8 +84,8 @@ public class EnhancedExcelReader {
             String message = getCellValue(row.getCell(columnMap.getOrDefault("message", 5)));
             String direction = getCellValue(row.getCell(columnMap.getOrDefault("direction", 6))).toUpperCase();
             
-            // ✅ CRITICAL: For Individual tests, recipient = B Party Number
-            // ✅ CRITICAL: For Group tests, use group name
+            //  CRITICAL: For Individual tests, recipient = B Party Number
+            //  CRITICAL: For Group tests, use group name
             
             // Determine if it's individual or group based on Test Type column
             boolean isIndividual = testType.contains("INDIVIDUAL");
@@ -97,7 +97,7 @@ public class EnhancedExcelReader {
                 isIndividual = !isGroup;
             }
             
-            // ✅ For INDIVIDUAL tests: recipient column is the B Party Number
+            //  For INDIVIDUAL tests: recipient column is the B Party Number
             String bPartyNumber = isIndividual ? recipient : "";
             
             // Validate required fields
@@ -136,7 +136,7 @@ public class EnhancedExcelReader {
             // Determine if incoming
             boolean isIncoming = direction.contains("INCOMING");
             
-            // ✅ BUILD TEST CASE
+            //  BUILD TEST CASE
             Map<String, Object> testCase = new HashMap<>();
             testCase.put("testType", testType);
             testCase.put("isIndividual", isIndividual);
@@ -152,7 +152,7 @@ public class EnhancedExcelReader {
             testCase.put("direction", direction);
             testCase.put("isIncoming", isIncoming);
             
-            // ✅ GENERATE TEST NAME
+            //  GENERATE TEST NAME
             if (isIndividual) {
                 String phoneSuffix = bPartyNumber.length() > 4 ? 
                     bPartyNumber.substring(bPartyNumber.length() - 4) : bPartyNumber;
@@ -174,7 +174,7 @@ public class EnhancedExcelReader {
     }
     
     /**
-     * ✅ Normalize message type
+     *  Normalize message type
      */
     private static String normalizeMessageType(String messageType) {
         if (messageType == null || messageType.trim().isEmpty()) return "text";
@@ -193,7 +193,7 @@ public class EnhancedExcelReader {
     }
     
     /**
-     * ✅ LOG SMS TEST CASE
+     *  LOG SMS TEST CASE
      */
     private static void logSMSTestCase(Map<String, Object> testCase) {
         String emoji = (Boolean) testCase.get("isIndividual") ? "📱" : "👥";
@@ -237,7 +237,7 @@ public class EnhancedExcelReader {
     }
     
     /**
-     * ✅ PRINT SMS TEST SUMMARY
+     *  PRINT SMS TEST SUMMARY
      */
     private static void printSMSTestSummary(List<Map<String, Object>> testCases) {
         long individualCount = testCases.stream().filter(t -> (Boolean) t.get("isIndividual")).count();
@@ -398,7 +398,7 @@ public class EnhancedExcelReader {
                 }
             }
             
-            System.out.println("✅ Read " + testCases.size() + " SIM auto-latch test cases from Excel");
+            System.out.println(" Read " + testCases.size() + " SIM auto-latch test cases from Excel");
             
         } catch (Exception e) {
             System.out.println("❌ Error reading SIM auto-latch test data: " + e.getMessage());
@@ -446,7 +446,7 @@ public class EnhancedExcelReader {
             }
             
             System.out.println("=".repeat(100));
-            System.out.println("✅ Successfully loaded " + testCases.size() + " calling tests\n");
+            System.out.println(" Successfully loaded " + testCases.size() + " calling tests\n");
             printCallingTestSummary(testCases);
             
         } catch (Exception e) {
@@ -577,11 +577,11 @@ public class EnhancedExcelReader {
                     dataTest.put("criteria", criteria.isEmpty() ? "Data consumption validation" : criteria);
                     dataTests.add(dataTest);
                     
-                    System.out.println("✅ " + scenario + " | " + targetGB + " GB | " + durationMin + " min");
+                    System.out.println(" " + scenario + " | " + targetGB + " GB | " + durationMin + " min");
                 }
             }
             
-            System.out.println("✅ Loaded " + dataTests.size() + " data usage tests");
+            System.out.println(" Loaded " + dataTests.size() + " data usage tests");
             
         } catch (Exception e) {
             System.out.println("❌ Error reading data usage test data: " + e.getMessage());

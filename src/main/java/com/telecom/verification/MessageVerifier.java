@@ -9,7 +9,7 @@ import java.time.Duration;
 import java.util.List;
 
 /**
- * ✅ UNIFIED MESSAGE VERIFICATION
+ *  UNIFIED MESSAGE VERIFICATION
  * Handles verification for both Text SMS and Voice Messages
  * Enhanced to support both individual and group messages
  */
@@ -24,7 +24,7 @@ public class MessageVerifier {
     }
     
     /**
-     * ✅ VERIFY MESSAGE SENT (Text or Voice) - Enhanced version
+     *  VERIFY MESSAGE SENT (Text or Voice) - Enhanced version
      * Returns: true if sent successfully, false if failed
      * Supports both individual and group messages
      */
@@ -46,7 +46,7 @@ public class MessageVerifier {
                 
                 switch (result.status) {
                     case SUCCESS:
-                        System.out.println("✅ Message verified as sent successfully");
+                        System.out.println(" Message verified as sent successfully");
                         return true;
                     case FAILED:
                         System.out.println("❌ Message sending failed: " + result.details);
@@ -76,7 +76,7 @@ public class MessageVerifier {
     }
     
     /**
-     * ✅ CHECK MESSAGE STATUS WITH MULTIPLE STRATEGIES
+     *  CHECK MESSAGE STATUS WITH MULTIPLE STRATEGIES
      */
     private VerificationResult checkMessageStatus() {
         VerificationResult result = new VerificationResult();
@@ -106,7 +106,7 @@ public class MessageVerifier {
     }
     
     /**
-     * ✅ CHECK VISUAL INDICATORS
+     *  CHECK VISUAL INDICATORS
      * Handles both individual and group messages
      */
     private VerificationResult checkVisualIndicators() {
@@ -218,7 +218,7 @@ public class MessageVerifier {
     }
     
     /**
-     * ✅ CHECK PAGE SOURCE
+     *  CHECK PAGE SOURCE
      */
     private VerificationResult checkPageSource() {
         VerificationResult result = new VerificationResult();
@@ -271,7 +271,7 @@ public class MessageVerifier {
     }
     
     /**
-     * ✅ CHECK SPECIFIC ELEMENTS
+     *  CHECK SPECIFIC ELEMENTS
      */
     private VerificationResult checkSpecificElements() {
         VerificationResult result = new VerificationResult();
@@ -328,7 +328,7 @@ public class MessageVerifier {
     }
     
     /**
-     * ✅ SIMPLE CHECK - For quick verification
+     *  SIMPLE CHECK - For quick verification
      */
     public boolean quickVerifyMessageSent() {
         try {
@@ -347,7 +347,7 @@ public class MessageVerifier {
                              pageSource.contains("failed");
             
             if (isSent) {
-                System.out.println("✅ Quick verification: Message sent");
+                System.out.println(" Quick verification: Message sent");
                 return true;
             } else if (isFailed) {
                 System.out.println("❌ Quick verification: Message failed");
@@ -365,7 +365,7 @@ public class MessageVerifier {
     }
     
     /**
-     * ✅ LEGACY COMPATIBILITY - For backward compatibility
+     *  LEGACY COMPATIBILITY - For backward compatibility
      * Keeps the original simple verification logic
      */
     public boolean legacyVerifyMessageSent() {

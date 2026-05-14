@@ -76,7 +76,7 @@ mvn clean test %DEVICE_PARAM% -DsuiteXmlFile=testng-xml/%TEST_SUITE%
 if %errorlevel% equ 0 (
     echo.
     echo %GREEN%===============================================%RESET%
-    echo %GREEN%✅ Tests completed successfully!%RESET%
+    echo %GREEN% Tests completed successfully!%RESET%
     echo %GREEN%===============================================%RESET%
 ) else (
     echo.

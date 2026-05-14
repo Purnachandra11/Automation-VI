@@ -60,7 +60,7 @@ public class ADBLauncher {
             int exitCode = process.waitFor();
             
             if (exitCode == 0) {
-                System.out.println("  ✅ ADB command executed successfully");
+                System.out.println("   ADB command executed successfully");
                 if (!output.toString().isEmpty()) {
                     System.out.println("  Output: " + output.toString().trim());
                 }

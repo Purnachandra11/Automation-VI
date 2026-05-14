@@ -24,7 +24,7 @@ public class SIMAutoLatchMonitor {
     }
     
     /**
-     * ✅ SET PREFERRED NETWORK TYPE - FIXED FOR DUAL SIM
+     *  SET PREFERRED NETWORK TYPE - FIXED FOR DUAL SIM
      */
     public boolean setPreferredNetworkType(String networkType) {
         try {
@@ -50,7 +50,7 @@ public class SIMAutoLatchMonitor {
             }
             
             Thread.sleep(3000);
-            System.out.println("✅ Preferred network set to: " + networkType);
+            System.out.println(" Preferred network set to: " + networkType);
             return success;
             
         } catch (Exception e) {
@@ -72,7 +72,7 @@ public class SIMAutoLatchMonitor {
     }
     
     /**
-     * ✅ MAIN AUTO-LATCH TEST EXECUTION - COMPLETELY FIXED
+     *  MAIN AUTO-LATCH TEST EXECUTION - COMPLETELY FIXED
      */
     public AutoLatchResult executeAutoLatchTest() {
         AutoLatchResult result = new AutoLatchResult();
@@ -105,7 +105,7 @@ public class SIMAutoLatchMonitor {
             
             System.out.println("   📶 State: " + initialState.get("state"));
             System.out.println("   📡 RAT: " + initialState.get("rat"));
-            System.out.println("   📞 IMS: " + (result.isInitialIMSRegistered() ? "✅" : "❌"));
+            System.out.println("   📞 IMS: " + (result.isInitialIMSRegistered() ? "" : "❌"));
             
             // If not registered, test is invalid
             if ("OUT_OF_SERVICE".equals(initialState.get("state")) || 
@@ -174,12 +174,12 @@ public class SIMAutoLatchMonitor {
                 }
                 
                 System.out.println("\n   " + "=".repeat(80));
-                System.out.println("   ✅ NETWORK REGISTERED!");
+                System.out.println("    NETWORK REGISTERED!");
                 System.out.println("   ⏱️  Auto-latch: " + autoLatchTimeMs + " ms (" + 
                                  String.format("%.2f", autoLatchTimeMs/1000.0) + "s)");
                 System.out.println("   📶 Final State: " + result.getFinalNetworkState());
                 System.out.println("   📡 Final RAT: " + result.getFinalRAT());
-                System.out.println("   📞 IMS: " + (result.isFinalIMSRegistered() ? "✅" : "❌"));
+                System.out.println("   📞 IMS: " + (result.isFinalIMSRegistered() ? "" : "❌"));
                 System.out.println("   📊 Result: " + result.getTestResult());
                 
             } else {
@@ -210,7 +210,7 @@ public class SIMAutoLatchMonitor {
     }
     
     /**
-     * ✅ VERIFY DEVICE AND SIM ARE READY
+     *  VERIFY DEVICE AND SIM ARE READY
      */
     private boolean verifyDeviceAndSIM() {
         try {
@@ -224,7 +224,7 @@ public class SIMAutoLatchMonitor {
             
             // Check if at least one SIM is loaded
             if (simState.contains("LOADED") || simState.contains("READY")) {
-                System.out.println("   ✅ SIM verified");
+                System.out.println("    SIM verified");
                 return true;
             } else {
                 System.out.println("   ❌ No active SIM found");
@@ -238,7 +238,7 @@ public class SIMAutoLatchMonitor {
     }
     
     /**
-     * ✅ ROBUST NETWORK STATE CAPTURE - MULTIPLE METHODS
+     *  ROBUST NETWORK STATE CAPTURE - MULTIPLE METHODS
      */
     private Map<String, String> captureNetworkStateRobust() {
         Map<String, String> state = new HashMap<>();
@@ -288,7 +288,7 @@ public class SIMAutoLatchMonitor {
     }
     
     /**
-     * ✅ ROBUST IMS REGISTRATION CHECK
+     *  ROBUST IMS REGISTRATION CHECK
      */
     private boolean isIMSRegisteredRobust() {
         try {
@@ -318,7 +318,7 @@ public class SIMAutoLatchMonitor {
     }
     
     /**
-     * ✅ ROBUST FLIGHT MODE ENABLE - MULTIPLE METHODS
+     *  ROBUST FLIGHT MODE ENABLE - MULTIPLE METHODS
      */
     private boolean enableFlightModeRobust() {
         System.out.println("   Method 1: Using ADB settings...");
@@ -332,7 +332,7 @@ public class SIMAutoLatchMonitor {
             // Verify
             String airplaneState = executeADBCommand("shell settings get global airplane_mode_on").trim();
             if ("1".equals(airplaneState)) {
-                System.out.println("   ✅ Flight mode enabled via ADB");
+                System.out.println("    Flight mode enabled via ADB");
                 return true;
             }
         } catch (Exception e) {
@@ -366,7 +366,7 @@ public class SIMAutoLatchMonitor {
     }
     
     /**
-     * ✅ ROBUST FLIGHT MODE DISABLE - MULTIPLE METHODS
+     *  ROBUST FLIGHT MODE DISABLE - MULTIPLE METHODS
      */
     private boolean disableFlightModeRobust() {
         System.out.println("   Method 1: Using ADB settings...");
@@ -378,7 +378,7 @@ public class SIMAutoLatchMonitor {
             
             String airplaneState = executeADBCommand("shell settings get global airplane_mode_on").trim();
             if ("0".equals(airplaneState)) {
-                System.out.println("   ✅ Flight mode disabled via ADB");
+                System.out.println("    Flight mode disabled via ADB");
                 return true;
             }
         } catch (Exception e) {
@@ -404,7 +404,7 @@ public class SIMAutoLatchMonitor {
     }
     
     /**
-     * ✅ ROBUST NETWORK MONITORING
+     *  ROBUST NETWORK MONITORING
      */
     private NetworkRegistrationEvent monitorNetworkRegistrationRobust(Instant startTime) {
         NetworkRegistrationEvent event = new NetworkRegistrationEvent();

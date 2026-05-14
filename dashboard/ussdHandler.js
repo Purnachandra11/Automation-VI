@@ -71,7 +71,7 @@ async function getSimNumberViaUSSD(deviceId, res) {
     validityIsFuture = dt >= today;
   }
 
-  console.log("✅ Phone Number:", phoneNumber);
+  console.log(" Phone Number:", phoneNumber);
   console.log("💰 Balance:", balance);
 
   if (res) send({ 

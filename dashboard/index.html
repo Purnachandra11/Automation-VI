@@ -1207,7 +1207,7 @@
 
 		    <button class="btn btn-warning" onclick="restartADBAndAppium()"
 		      style="padding: 8px 16px; font-size: 14px;">
-		      🔄 Restart Services
+		       Restart Services
 		    </button>
 		  </div>
 
@@ -1235,7 +1235,7 @@
       </div> -->
       <div class="form-group">
         <label>Connection Method</label>
-        <select id="connectionMethod" onchange="toggleConnectionOptions()">
+        <select id="connectionMethod" title="Connection Method" onchange="toggleConnectionOptions()">
           <option value="usb">USB Connection</option>
           <option value="wireless">Wireless Connection</option>
 <!--          <option value="select">Select from Connected Devices</option>-->
@@ -1247,7 +1247,7 @@
         <div id="usbOptions">
           <div style="display: flex; gap: 10px;">
             <button class="btn btn-primary" onclick="connectUSB()" style="flex: 1;">🔌 Connect via USB</button>
-<!--            <button class="btn btn-info" onclick="refreshConnectedDevices()" style="flex: 1;">🔄 Refresh-->
+<!--            <button class="btn btn-info" onclick="refreshConnectedDevices()" style="flex: 1;"> Refresh-->
 <!--              Devices</button>-->
           </div>
         </div>
@@ -1292,7 +1292,7 @@
               📡 Connect via WiFi
             </button>
 <!--            <button class="btn btn-info" onclick="refreshConnectedDevices()" style="flex: 1;">-->
-<!--              🔄 Refresh Devices-->
+<!--               Refresh Devices-->
 <!--            </button>-->
           </div>
         </div>
@@ -1307,7 +1307,7 @@
           </div>
           <div style="display: flex; gap: 10px;">
             <!--<button class="btn btn-info" onclick="refreshConnectedDevices()" style="flex: 1;">
-              🔄 Refresh List
+               Refresh List
             </button>-->
           </div>
         </div>
@@ -1356,10 +1356,10 @@
 	  <!-- Rest of your Test Execution content remains the same -->
 	  <!-- Multiple File Upload (Combined Calling + SMS + Data) -->
 	  <div id="multiFileUpload" class="form-group">
-	    <label>Upload Excel File (Calling, SMS, Data):</label>
+	    <label for="callingFile">Upload Excel File (Calling, SMS, Data):</label>
 	    <div class="grid-2">
 	      <div class="form-group">
-	        <input type="file" id="callingFile" accept=".xlsx,.xls" onchange="handleMultiFileUpload('calling', this)">
+	        <input type="file" id="callingFile" accept=".xlsx,.xls" title="Upload Excel File" onchange="handleMultiFileUpload('calling', this)">
 	        <div id="callingFileStatus" style="margin-top: 8px; font-size: 13px; color: var(--text-muted);"></div>
 	      </div>
 	    </div>
@@ -1643,7 +1643,7 @@ function downloadSampleFile() {
         window.URL.revokeObjectURL(url);
         document.body.removeChild(a);
         hideLoader();
-        addLog('✅ Sample Excel template downloaded successfully', 'success');
+        addLog(' Sample Excel template downloaded successfully', 'success');
         addLog('📌 Fill the file and upload to start testing', 'info');
       }, 100);
     })
@@ -1798,7 +1798,7 @@ function downloadSampleFile() {
           data.device.isOffline = isOffline;
           updateDeviceStatus(true, data.device);
           addDeviceToList(data.device);
-          addLog(`✅ Device selected: ${data.device.model}`, 'success');
+          addLog(` Device selected: ${data.device.model}`, 'success');
         } else {
           addLog(`❌ Failed to select device: ${data.message}`, 'error');
         }
@@ -1823,7 +1823,7 @@ function downloadSampleFile() {
 
         if (data.success) {
           updateADBStatus('running');
-          addLog('✅ ADB server started successfully', 'success');
+          addLog(' ADB server started successfully', 'success');
         } else {
           addLog(`❌ ADB start failed: ${data.message}`, 'error');
         }
@@ -1847,7 +1847,7 @@ function downloadSampleFile() {
 
         if (data.success) {
           updateADBStatus('stopped');
-          addLog('✅ ADB server stopped', 'success');
+          addLog(' ADB server stopped', 'success');
         } else {
           addLog(`❌ ADB stop failed: ${data.message}`, 'error');
         }
@@ -1875,7 +1875,7 @@ function downloadSampleFile() {
 
         if (data.success) {
           updateAppiumStatus('running');
-          addLog('✅ Appium server started on http://127.0.0.1:4723', 'success');
+          addLog(' Appium server started on http://127.0.0.1:4723', 'success');
         } else {
           addLog(`❌ Appium start failed: ${data.message}`, 'error');
         }
@@ -1899,7 +1899,7 @@ function downloadSampleFile() {
 
         if (data.success) {
           updateAppiumStatus('stopped');
-          addLog('✅ Appium server stopped', 'success');
+          addLog(' Appium server stopped', 'success');
         } else {
           addLog(`❌ Appium stop failed: ${data.message}`, 'error');
         }
@@ -1951,7 +1951,7 @@ function downloadSampleFile() {
 	
 	async function restartADBAndAppium() {
 	  try {
-	    addLog('🔄 Restarting ADB and Appium servers...', 'info');
+	    addLog(' Restarting ADB and Appium servers...', 'info');
 
 	    // Stop both first
 	    await stopADB();
@@ -1967,7 +1967,7 @@ function downloadSampleFile() {
 	    // Refresh status
 	    setTimeout(checkServerStatus, 1500);
 
-	    addLog('✅ ADB & Appium restarted successfully', 'success');
+	    addLog(' ADB & Appium restarted successfully', 'success');
 	  } catch (error) {
 	    console.error(error);
 	    addLog(`❌ Restart failed: ${error.message}`, 'error');
@@ -1989,7 +1989,7 @@ function downloadSampleFile() {
           currentDeviceId = data.devices[0].id;
           // updateDeviceStatus(true, data.device);
           addDeviceToList(data.devices);
-          addLog(`✅ USB device connected: ${data.device.model}`, 'success');
+          addLog(` USB device connected: ${data.device.model}`, 'success');
           validateFilesAndUpdateButton();
         } else {
           addLog(`❌ Connection failed: ${data.message}`, 'error');
@@ -2049,14 +2049,14 @@ function downloadSampleFile() {
           data.device.isOffline = isOffline;
           updateDeviceStatus(true, data.device);
           addDeviceToList(data.device);
-          addLog(`✅ ${connectionType === 'new' ? 'New wireless' : 'Existing'} device connected: ${data.device.model}`, 'success');
+          addLog(` ${connectionType === 'new' ? 'New wireless' : 'Existing'} device connected: ${data.device.model}`, 'success');
 
           // Clear form on success
           clearWirelessForm();
           validateFilesAndUpdateButton();
         } else {
           if (data.message && data.message.includes('Paired Successfully')) {
-            addLog('✅ Pairing successfully completed!', 'success');
+            addLog(' Pairing successfully completed!', 'success');
             addLog('📌 Now enter the IP address and port number to list your device.', 'info');
 
             document.getElementById('wirelessConnectionType').value = 'existing';
@@ -2434,7 +2434,7 @@ function updateTestDevicesList() {
         hideLoader();
         if (data.available) {
           warning.style.display = 'none';
-          addLog(`✅ ${networkType.toUpperCase()} available`, 'success');
+          addLog(` ${networkType.toUpperCase()} available`, 'success');
         } else {
           warning.style.display = 'none';
           addLog(`⚠️ ${networkType.toUpperCase()} not available`, 'warning');
@@ -2481,12 +2481,12 @@ function updateTestDevicesList() {
             (networkType === 'auto' || statusData.volteStatus === volteStatus)) {
             statusCheckEl.innerHTML = `
               <div class="success-box">
-                <h4>✅ Network Configuration Applied Successfully</h4>
+                <h4> Network Configuration Applied Successfully</h4>
                 <p><strong>Current Network:</strong> ${statusData.networkType.toUpperCase()}</p>
                 <p><strong>VoLTE Status:</strong> ${statusData.volteStatus}</p>
               </div>
             `;
-            addLog(`✅ Network configured: ${networkType.toUpperCase()}, VoLTE: ${volteStatus}`, 'success');
+            addLog(` Network configured: ${networkType.toUpperCase()}, VoLTE: ${volteStatus}`, 'success');
           } else {
             statusCheckEl.innerHTML = `
               <div class="warning-box">
@@ -2548,7 +2548,7 @@ function updateTestDevicesList() {
         
         if (data.success) {
           uploadedFiles[fileType] = { name: file.name, size: file.size,path:data.path };
-          statusDiv.textContent = `✅ ${file.name} uploaded`;
+          statusDiv.textContent = ` ${file.name} uploaded`;
           statusDiv.style.color = '#43A047';
           addLog(`📄 File uploaded: ${file.name}`, 'success');
           // addLog(`📄 ${fileType.toUpperCase()} file uploaded: ${file.name}`, 'success');
@@ -2702,7 +2702,7 @@ function updateTestDevicesList() {
           document.getElementById('finalReportPath').textContent = data.reportPath;
           document.getElementById('downloadFinalBtn').disabled = false;
           document.getElementById('emailFinalBtn').disabled = false;
-          addLog(`✅ Report generated: ${data.reportPath}`, 'success');
+          addLog(` Report generated: ${data.reportPath}`, 'success');
         } else {
           addLog(`❌ Generation failed: ${data.message}`, 'error');
         }
@@ -2733,7 +2733,7 @@ function updateTestDevicesList() {
         const data = await response.json();
         hideLoader();
         if (data.success) {
-          addLog(`✅ Email sent to: ${email}`, 'success');
+          addLog(` Email sent to: ${email}`, 'success');
         } else {
           addLog(`❌ Email failed: ${data.message}`, 'error');
         }
@@ -2808,7 +2808,7 @@ function updateTestDevicesList() {
 	  ws = new WebSocket('ws://localhost:5174');
 	  
 	  ws.onopen = () => {
-	    console.log('✅ WebSocket connected');
+	    console.log(' WebSocket connected');
 	    addLog('🔌 Connected to test server', 'success');
 	  };
 	  
@@ -3007,7 +3007,7 @@ function updateTestDevicesList() {
 	  else if (details.action === 'COMPOSING') statusIcon = '✍️';
 	  else if (details.action === 'TYPING') statusIcon = '⌨️';
 	  else if (details.action === 'SENDING') statusIcon = '📤';
-	  else if (details.action === 'DELIVERED') statusIcon = '✅';
+	  else if (details.action === 'DELIVERED') statusIcon = '';
 	  else if (details.action === 'FAILED') statusIcon = '❌';
 	  else if (details.action === 'ERROR') statusIcon = '⚠️';
 	  
@@ -3099,7 +3099,7 @@ function updateTestDevicesList() {
 	  }
 	  
 	  const logType = data.success ? 'success' : 'error';
-	  const emoji = data.success ? '✅' : '❌';
+	  const emoji = data.success ? '' : '❌';
 	  addLog(`${emoji} Test ${data.success ? 'completed successfully' : 'failed'}: ${data.message}`, logType);
 	  
 	  // Re-enable buttons
@@ -3124,7 +3124,7 @@ function updateTestDevicesList() {
 	  ws = new WebSocket('ws://localhost:5174');
 	  
 	  ws.onopen = () => {
-	    console.log('✅ WebSocket connected for device progress');
+	    console.log(' WebSocket connected for device progress');
 	    addLog('🔌 Connected to progress monitoring', 'success');
 	  };
 	  
@@ -3439,7 +3439,7 @@ function updateTestDevicesList() {
 	    a.remove();
 	    window.URL.revokeObjectURL(url);
 	    
-	    addLog(`✅ Downloaded: ${fileName}`, 'success');
+	    addLog(` Downloaded: ${fileName}`, 'success');
 	  } catch (error) {
 	    console.error('Download error:', error);
 	    alert('Error downloading file');
@@ -3455,9 +3455,9 @@ function updateTestDevicesList() {
 	    'calling-sms': '📞💬',
 	    'calling-data': '📞📥',
 	    'sms-data': '💬📥',
-	    'all': '🔄'
+	    'all': ''
 	  };
-	  return emojis[testType] || '🔄';
+	  return emojis[testType] || '';
 	}
 
 	function getProgressLogType(data) {
@@ -3507,7 +3507,7 @@ function updateTestDevicesList() {
 	  // if (!authenticated) return;
 	  
 	  setupBackNavigationProtection();
-	  addLog('✅ Dashboard initialized', 'success');
+	  addLog(' Dashboard initialized', 'success');
 	  addLog('🔍 Checking ADB/Appium status...', 'info');
 	  
 	  checkServerStatus();

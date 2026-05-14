@@ -21,7 +21,7 @@ for /f "tokens=1,2" %%a in ('adb devices ^| findstr "connected device"') do (
         if "%%a"=="List" goto skip
         if "%%a"=="" goto skip
         set B_PARTY_DEVICE=%%a
-        echo ✅ Found wireless device: %%a
+        echo  Found wireless device: %%a
     )
 )
 

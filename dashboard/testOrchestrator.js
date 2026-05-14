@@ -83,7 +83,7 @@ class TestOrchestrator {
 
       this.broadcast({
         type: 'log',
-        message: `✅ Device phone number: ${this.devicePhoneNumber}`,
+        message: ` Device phone number: ${this.devicePhoneNumber}`,
         logType: 'success'
       });
 
@@ -103,7 +103,7 @@ class TestOrchestrator {
 
       this.broadcast({
         type: 'log',
-        message: `✅ Test data loaded: ${this.testData.calling.length} calling tests, ${this.testData.sms.length} SMS tests`,
+        message: ` Test data loaded: ${this.testData.calling.length} calling tests, ${this.testData.sms.length} SMS tests`,
         logType: 'success'
       });
 
@@ -169,7 +169,7 @@ class TestOrchestrator {
       await execPromise(cmd);
       this.broadcast({
         type: 'log',
-        message: `✅ SIM auto-latch suite completed`,
+        message: ` SIM auto-latch suite completed`,
         logType: 'success'
       });
     } catch (error) {
@@ -265,7 +265,7 @@ class TestOrchestrator {
         const { stdout, stderr } = await execPromise(cmd);
         this.broadcast({
           type: 'log',
-          message: `✅ Calling test ${i + 1} completed: ${test.bPartyNumber}`,
+          message: ` Calling test ${i + 1} completed: ${test.bPartyNumber}`,
           logType: 'success'
         });
       } catch (error) {
@@ -316,7 +316,7 @@ class TestOrchestrator {
         const { stdout, stderr } = await execPromise(cmd);
         this.broadcast({
           type: 'log',
-          message: `✅ SMS test ${i + 1} completed`,
+          message: ` SMS test ${i + 1} completed`,
           logType: 'success'
         });
       } catch (error) {
@@ -360,7 +360,7 @@ class TestOrchestrator {
         const { stdout, stderr } = await execPromise(cmd);
         this.broadcast({
           type: 'log',
-          message: `✅ Data test ${i + 1} completed`,
+          message: ` Data test ${i + 1} completed`,
           logType: 'success'
         });
       } catch (error) {

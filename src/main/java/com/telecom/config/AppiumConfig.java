@@ -38,7 +38,7 @@ public class AppiumConfig {
             service = AppiumDriverLocalService.buildService(builder);
             service.start();
             
-            System.out.println("✅ Appium server started on: " + service.getUrl());
+            System.out.println(" Appium server started on: " + service.getUrl());
             
         } catch (Exception e) {
             System.out.println("⚠ Could not start Appium server automatically: " + e.getMessage());
@@ -50,7 +50,7 @@ public class AppiumConfig {
         try {
             if (service != null && service.isRunning()) {
                 service.stop();
-                System.out.println("✅ Appium server stopped");
+                System.out.println(" Appium server stopped");
             }
         } catch (Exception e) {
             System.err.println("Error stopping Appium server: " + e.getMessage());

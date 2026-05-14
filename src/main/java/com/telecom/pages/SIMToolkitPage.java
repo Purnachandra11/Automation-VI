@@ -51,7 +51,7 @@ public class SIMToolkitPage {
     @AndroidFindBy(id = "android:id/button2")
     private WebElement cancelButton;
     
-    // ✅ CRITICAL: Accept ScreenshotUtils from test class
+    //  CRITICAL: Accept ScreenshotUtils from test class
     public SIMToolkitPage(AppiumDriver driver, ScreenshotUtils screenshotUtils, String deviceId) {
         this.driver = driver;
         this.deviceId = deviceId; 
@@ -84,7 +84,7 @@ public class SIMToolkitPage {
                 break;
         }
         
-        System.out.println("└─ ✅ SIM scenario handled\n");
+        System.out.println("└─  SIM scenario handled\n");
         reportProgress("COMPLETED", "SIM scenario handled successfully", 40); 
         return simType;
     }
@@ -144,7 +144,7 @@ public class SIMToolkitPage {
             	  reportProgress("FLASH_FOUND", "Flash option found", 50);
                 click(flashOption, "Flash Option");
                 deviceUtils.navigateBack();
-                System.out.println("└─ ✅ Flash option captured\n");
+                System.out.println("└─  Flash option captured\n");
                 reportProgress("FLASH_COMPLETED", "Flash option tested successfully", 55);
             } else {
                 captureScreenshot("Flash Option Not Found");
@@ -165,7 +165,7 @@ public class SIMToolkitPage {
             if (isDisplayed(roamingOption)) {
             	 reportProgress("ROAMING_FOUND", "Roaming option found", 65);
                 click(roamingOption, "Roaming Menu");
-                System.out.println("└─ ✅ Roaming menu captured\n");
+                System.out.println("└─  Roaming menu captured\n");
                 reportProgress("ROAMING_ENTERED", "Entered Roaming menu", 70);
             } else {
                 System.out.println("└─ ⚠ Roaming option not found\n");
@@ -188,7 +188,7 @@ public class SIMToolkitPage {
         
         validateInternational();
         
-        System.out.println("└─ ✅ Sub-menus validated\n");
+        System.out.println("└─  Sub-menus validated\n");
         reportProgress("SUB_MENUS_COMPLETED", "Roaming sub-menus validated", 85); 
     }
 
@@ -200,7 +200,7 @@ public class SIMToolkitPage {
             if (isDisplayed(roamingOption)) {
                 reportProgress("ROAMING_FOUND", "Roaming option found", 45);
                 click(roamingOption, "Roaming Menu");
-                System.out.println("└─ ✅ Roaming menu captured\n");
+                System.out.println("└─  Roaming menu captured\n");
                 reportProgress("ROAMING_ENTERED", "Entered Roaming menu", 50);
             } else {
                 System.out.println("└─ ⚠ Roaming option not found\n");
@@ -283,7 +283,7 @@ public class SIMToolkitPage {
                     if (text != null) {
                         for (String branding : SIMToolkitConfig.VI_BRANDING_TEXTS) {
                             if (text.contains(branding)) {
-                                System.out.println("✅ Vi branding verified: " + text);
+                                System.out.println(" Vi branding verified: " + text);
                                 reportProgress("BRANDING_VERIFIED", "Vi branding verified: " + text, 95);
                                 return true;
                             }
@@ -304,7 +304,7 @@ public class SIMToolkitPage {
     public void completeSIMToolkitTest() {
         System.out.println("┌─ SIM Toolkit Test Complete");
         reportProgress("TEST_COMPLETE", "SIM Toolkit test completed successfully", 100);
-        System.out.println("└─ ✅ All SIM Toolkit steps completed\n");
+        System.out.println("└─  All SIM Toolkit steps completed\n");
     }
     
     // Helper methods

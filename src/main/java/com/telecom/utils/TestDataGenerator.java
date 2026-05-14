@@ -45,7 +45,7 @@ public class TestDataGenerator {
             }
             
             workbook.write(fos);
-            System.out.println("✅ Sample Excel file generated: " + filePath);
+            System.out.println(" Sample Excel file generated: " + filePath);
             
         } catch (Exception e) {
             System.out.println("❌ Failed to generate sample Excel file: " + e.getMessage());

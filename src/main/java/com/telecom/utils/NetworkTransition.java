@@ -1,7 +1,7 @@
 package com.telecom.utils;
 
 /**
- * ✅ Network transition
+ *  Network transition
  */
 public class NetworkTransition {
     private int timestamp; // seconds

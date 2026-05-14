@@ -100,7 +100,7 @@ public class DataUsagePage {
     }
     
     /**
-     * ✅ ULTRA-SIMPLE: Just download via Chrome and measure
+     *  ULTRA-SIMPLE: Just download via Chrome and measure
      */
     private Map<String, Object> executeTestFlow(String deviceId, String downloadUrl, 
                                                 int targetMB, int durationMin, double targetGB) {
@@ -180,7 +180,7 @@ public class DataUsagePage {
             System.out.println("   Total:         " + formatBytes(totalConsumed));
             System.out.println("   Target:        " + targetMB + " MB");
             System.out.println("   Achievement:   " + String.format("%.1f%%", achievementPercent));
-            System.out.println("   Status:        " + (status.equals("SUCCESS") ? "✅ SUCCESS" : "❌ FAILED"));
+            System.out.println("   Status:        " + (status.equals("SUCCESS") ? " SUCCESS" : "❌ FAILED"));
             System.out.println("=".repeat(80));
             
             // Return results
@@ -382,7 +382,7 @@ public class DataUsagePage {
             }
             
             if (activeInterface != null) {
-                System.out.println("   ✅ Selected interface: " + activeInterface + " (" + formatBytes(maxBytes) + ")");
+                System.out.println("    Selected interface: " + activeInterface + " (" + formatBytes(maxBytes) + ")");
                 return activeInterface;
             }
             
@@ -481,7 +481,7 @@ public class DataUsagePage {
     //             Thread.sleep(2000);
     //         }
             
-    //         System.out.println("   ✅ WiFi disabled");
+    //         System.out.println("    WiFi disabled");
     //         return true;
     //     } catch (Exception e) {
     //         return false;
@@ -493,7 +493,7 @@ public class DataUsagePage {
             System.out.println("\n📶 Re-enabling WiFi...");
             ADBHelper.executeCommand("adb -s " + deviceId + " shell svc wifi enable");
             Thread.sleep(3000);
-            System.out.println("   ✅ WiFi enabled");
+            System.out.println("    WiFi enabled");
         } catch (Exception e) {
             // Ignore
         }

@@ -18,7 +18,7 @@ public class Main {
         Map<String, Object> detailedResult = USSDService.checkBalanceAndValidity(deviceId, "*199#");
         
         if ((Boolean) detailedResult.getOrDefault("success", false)) {
-            System.out.println("✅ SUCCESS!");
+            System.out.println(" SUCCESS!");
             System.out.println("Phone: " + detailedResult.get("phoneNumber"));
             System.out.println("Balance: ₹" + detailedResult.get("balance"));
             System.out.println("Numeric Balance: " + detailedResult.get("balanceNumeric"));

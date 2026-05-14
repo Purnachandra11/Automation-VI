@@ -16,7 +16,7 @@ public class BasePage {
     protected WebDriverWait wait;
     protected ScreenshotUtils screenshotUtils;
     
-    // ✅ Accept ScreenshotUtils from test class
+    //  Accept ScreenshotUtils from test class
     public BasePage(AppiumDriver driver, ScreenshotUtils screenshotUtils) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(30));

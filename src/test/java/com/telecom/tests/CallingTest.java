@@ -43,7 +43,7 @@ public class CallingTest {
         System.out.println("   A-Party Device: " + aPartyDeviceId);
         System.out.println("   Android Version: " + platformVersion);
         
-        // ✅ CRITICAL FIX: Initialize DeviceManager BEFORE anything else
+        //  CRITICAL FIX: Initialize DeviceManager BEFORE anything else
         System.out.println("\n🔧 Initializing DeviceManager...");
         com.telecom.utils.DeviceManager.initializeDevices();
         
@@ -61,7 +61,7 @@ public class CallingTest {
         // Initialize executor
         callingExecutor = new CompleteCallingTestExecutor(driver, aPartyDeviceId);
         
-        System.out.println("✅ Setup completed successfully\n");
+        System.out.println(" Setup completed successfully\n");
     }
     
     @Test(description = "Execute all calling tests from Excel")
@@ -86,7 +86,7 @@ public class CallingTest {
                 .filter(r -> "SUCCESS".equals(r.get("finalStatus")))
                 .count();
             
-            System.out.println("✅ Passed: " + passed);
+            System.out.println(" Passed: " + passed);
             System.out.println("❌ Failed: " + (results.size() - passed));
             
             if (results.size() > 0) {
@@ -127,7 +127,7 @@ public class CallingTest {
         try {
             if (driver != null) {
                 DriverManager.quitDriver();
-                System.out.println("✅ Driver quit successfully");
+                System.out.println(" Driver quit successfully");
             }
         } catch (Exception e) {
             System.out.println("⚠️ Driver quit had issues: " + e.getMessage());
@@ -177,7 +177,7 @@ class UpdatedSMSTest {
         // Initialize executor
         smsExecutor = new CompleteSMSTestExecutor(driver, deviceId);
         
-        System.out.println("✅ Setup completed successfully\n");
+        System.out.println(" Setup completed successfully\n");
     }
     
     @Test(description = "Execute all SMS tests from Excel")
@@ -203,7 +203,7 @@ class UpdatedSMSTest {
                            "PARTIAL_SUCCESS".equals(r.get("finalStatus")))
                 .count();
             
-            System.out.println("✅ Passed: " + passed);
+            System.out.println(" Passed: " + passed);
             System.out.println("❌ Failed: " + (results.size() - passed));
             
             // SMS delivery statistics
@@ -253,7 +253,7 @@ class UpdatedSMSTest {
         try {
             if (driver != null) {
                 driver.quit();
-                System.out.println("✅ Driver quit successfully");
+                System.out.println(" Driver quit successfully");
             }
         } catch (Exception e) {
             System.out.println("⚠️ Driver quit had issues: " + e.getMessage());

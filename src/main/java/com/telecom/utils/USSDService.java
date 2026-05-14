@@ -16,7 +16,7 @@ public class USSDService {
     private static final String API_URL = "http://localhost:5175/getBalance";
     
     /**
-     * ✅ CHECK BALANCE AND VALIDITY - Enhanced Version
+     *  CHECK BALANCE AND VALIDITY - Enhanced Version
      */  
     public static Map<String, Object> checkBalanceAndValidity(String deviceId, String ussdCode) {
         Map<String, Object> result = new HashMap<>();
@@ -94,7 +94,7 @@ public class USSDService {
                         result.put("validity", null);
                     }
                     
-                    System.out.println("   ✅ USSD API Success");
+                    System.out.println("    USSD API Success");
                     
                 } else {
                     // API returned status != 1
@@ -147,7 +147,7 @@ public class USSDService {
     }
     
     /**
-     * ✅ CHECK BALANCE ONLY - Quick check without full details
+     *  CHECK BALANCE ONLY - Quick check without full details
      */
     public static Double getQuickBalance(String deviceId) {
         try {
@@ -171,7 +171,7 @@ public class USSDService {
     }
     
     /**
-     * ✅ VERIFY PHONE NUMBER MATCH
+     *  VERIFY PHONE NUMBER MATCH
      */
     public static boolean verifyPhoneNumber(String deviceId, String expectedNumber) {
         try {
@@ -189,7 +189,7 @@ public class USSDService {
                     System.out.println("📱 Phone Number Verification:");
                     System.out.println("   Expected: " + expectedNumber + " → " + normalizedExpected);
                     System.out.println("   Actual: " + actualNumber + " → " + normalizedActual);
-                    System.out.println("   Match: " + (match ? "✅" : "❌"));
+                    System.out.println("   Match: " + (match ? "" : "❌"));
                     
                     return match;
                 }
@@ -203,7 +203,7 @@ public class USSDService {
     }
     
     /**
-     * ✅ NORMALIZE PHONE NUMBER - Handle different formats
+     *  NORMALIZE PHONE NUMBER - Handle different formats
      */
     private static String normalizePhoneNumber(String phoneNumber) {
         if (phoneNumber == null) return "";
@@ -227,7 +227,7 @@ public class USSDService {
     }
     
     /**
-     * ✅ TEST CONNECTION - Verify API is reachable
+     *  TEST CONNECTION - Verify API is reachable
      */
     public static boolean testAPIConnection() {
         try {
@@ -244,7 +244,7 @@ public class USSDService {
             conn.disconnect();
             
             boolean reachable = (responseCode > 0);
-            System.out.println(reachable ? "✅ API is reachable" : "❌ API is not reachable");
+            System.out.println(reachable ? " API is reachable" : "❌ API is not reachable");
             
             return reachable;
             

@@ -7,7 +7,7 @@ async function openMessagingApp(driver) {
 
     try {
         await driver.activateApp(ElementConfig.MESSAGING_PACKAGE);
-        console.log("  ✅ App activated");
+        console.log("   App activated");
     } catch {
         console.log("  ⚠ activateApp failed, using shell...");
         await driver.execute("mobile: shell", {
@@ -19,12 +19,12 @@ async function openMessagingApp(driver) {
 }
 
 async function navigateToMainScreen(driver) {
-    console.log("🔄 Ensuring main screen…");
+    console.log(" Ensuring main screen…");
 
     for (let i = 0; i < 5; i++) {
         try {
             await driver.$('id=com.google.android.apps.messaging:id/start_chat_fab');
-            console.log("  ✅ On main screen");
+            console.log("   On main screen");
             return;
         } catch {
             await driver.back();
@@ -73,7 +73,7 @@ async function sendMessage(driver) {
             if (await btn.isDisplayed()) {
                 await btn.click();
                 await driver.pause(1000);
-                console.log("  ✅ Message sent via:", selector);
+                console.log("   Message sent via:", selector);
                 return;
             }
         } catch (err) { /* try next */ }
@@ -97,17 +97,17 @@ async function verifyDeliveryADB(deviceId) {
 async function verifyMessageSent(driver) {
     console.log("  🔍 Skipping pageSource check (unstable on some devices)");
     await driver.pause(2000);
-    console.log("  ✅ Assuming SMS was sent successfully");
+    console.log("   Assuming SMS was sent successfully");
     return true;
 }
 async function ensureMainScreen(driver) {
-    console.log("🔄 Ensuring main screen...");
+    console.log(" Ensuring main screen...");
 
     // 1. Check if start chat FAB is already visible
     try {
         const fab = await driver.$(ElementConfig.START_CHAT_FAB);
         if (await fab.isDisplayed()) {
-            console.log("  ✅ Already on main screen");
+            console.log("   Already on main screen");
             return;
         }
     } catch {}
@@ -122,7 +122,7 @@ async function ensureMainScreen(driver) {
         try {
             const fab = await driver.$(ElementConfig.START_CHAT_FAB);
             if (await fab.isDisplayed()) {
-                console.log("  ✅ Reached main screen");
+                console.log("   Reached main screen");
                 return;
             }
         } catch {}

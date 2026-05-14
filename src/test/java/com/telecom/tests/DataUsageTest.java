@@ -31,7 +31,7 @@ public class DataUsageTest {
         String androidVersion = com.telecom.utils.ADBHelper.getAndroidVersion(deviceId);
         driver = DriverManager.initializeDriver(deviceId, androidVersion.split("\\.")[0]);
         
-        System.out.println("✅ Data Usage Test Environment Ready");
+        System.out.println(" Data Usage Test Environment Ready");
     }
     
     @Test
@@ -45,7 +45,7 @@ public class DataUsageTest {
             DataUsageTestExecutor executor = new DataUsageTestExecutor(driver, deviceId);
             List<Map<String, Object>> results = executor.executeDataUsageTests(excelPath);
             
-            System.out.println("\n✅ Data Usage Tests Completed");
+            System.out.println("\n Data Usage Tests Completed");
             System.out.println("   Total Tests: " + results.size());
             
         } catch (Exception e) {

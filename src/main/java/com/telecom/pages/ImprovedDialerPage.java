@@ -48,7 +48,7 @@ public class ImprovedDialerPage {
             System.out.println("   Conference: " + (enableConference ? "Enabled (C Party: " + cPartyNumber + ")" : "Disabled"));
             
             for (int attempt = 1; attempt <= maxAttempts; attempt++) {
-                System.out.println("  🔄 Attempt " + attempt + "/" + maxAttempts);
+                System.out.println("   Attempt " + attempt + "/" + maxAttempts);
                 callResult.setAttemptNumber(attempt);
                 
                 // Use intent-based calling (100% working method)
@@ -77,7 +77,7 @@ public class ImprovedDialerPage {
                         ConferenceResult conferenceResult = addPartyToConferenceSimple(cPartyNumber, totalCallDuration);
                         
                         if (conferenceResult.isConferenceSuccess()) {
-                            System.out.println("✅ Conference call established successfully");
+                            System.out.println(" Conference call established successfully");
                             totalCallDuration = conferenceResult.getTotalDuration();
                             callResult.setConferenceSuccess(true);
                             callResult.setConferenceDuration(conferenceResult.getConferenceDuration());
@@ -136,7 +136,7 @@ public class ImprovedDialerPage {
                     
                     // If this is not the last attempt, wait and retry
                     if (attempt < maxAttempts) {
-                        System.out.println("🔄 Retrying call in 5 seconds...");
+                        System.out.println(" Retrying call in 5 seconds...");
                         Thread.sleep(3000);
                     } else {
                         System.out.println("❌ All " + maxAttempts + " attempts failed");
@@ -147,7 +147,7 @@ public class ImprovedDialerPage {
             // Set the final attempt number (the successful one or the last failed one)
             callResult.setAttemptNumber(successfulAttempt > 0 ? successfulAttempt : maxAttempts);
             
-            System.out.println("✅ Call completed: " + phoneNumber + " | Status: " + callResult.getCallStatus() + 
+            System.out.println(" Call completed: " + phoneNumber + " | Status: " + callResult.getCallStatus() + 
                               " | Total Duration: " + callResult.getActualDuration() + "s" +
                               " | Attempts: " + callResult.getAttemptNumber() + "/" + maxAttempts);
             return callResult;
@@ -173,7 +173,7 @@ public class ImprovedDialerPage {
     }
     
     public CallConnectionResult waitForCallConnectionWithDuration(int targetDurationSeconds, boolean enableConference) {
-        System.out.println("  🔄 Waiting for call connection with PRECISE duration tracking...");
+        System.out.println("   Waiting for call connection with PRECISE duration tracking...");
         System.out.println("  🎯 Target Duration: " + targetDurationSeconds + "s");
         
         long startTime = System.currentTimeMillis();
@@ -245,7 +245,7 @@ public class ImprovedDialerPage {
                     
                     if (actualDuration >= targetDurationSeconds && !durationTargetReached) {
                         durationTargetReached = true;
-                        System.out.println("  ✅ Target duration reached (" + targetDurationSeconds + "s)");
+                        System.out.println("   Target duration reached (" + targetDurationSeconds + "s)");
                         
                         ProgressReporter.reportCallingProgress(
                             deviceId,
@@ -332,19 +332,19 @@ public class ImprovedDialerPage {
             Thread.sleep(3000);
             
             // Step 2: Wait for both calls to be active
-            System.out.println("  🔄 Waiting for both calls to be active...");
+            System.out.println("   Waiting for both calls to be active...");
             Thread.sleep(2000);
             
             // Step 3: Check if both calls are active and merge if possible
             String pageSource = driver.getPageSource();
             if (pageSource.contains("2 calls") || pageSource.contains("Merge") || pageSource.contains("Conference")) {
-                System.out.println("  ✅ Both calls detected, attempting merge...");
+                System.out.println("   Both calls detected, attempting merge...");
                 
                 if (tryManualMerge()) {
                     result.setConferenceSuccess(true);
                     result.setConferenceDuration(10);
                     result.setTotalDuration(bPartyDuration + 10);
-                    System.out.println("  ✅ Conference merged successfully");
+                    System.out.println("   Conference merged successfully");
                 } else {
                     // Even if merge fails, both calls are active
                     result.setConferenceSuccess(true);
@@ -384,7 +384,7 @@ public class ImprovedDialerPage {
             params.put("command", "am start -a android.intent.action.CALL -d tel:" + cPartyNumber);
             driver.executeScript("mobile: shell", params);
             
-            System.out.println("  ✅ Conference intent sent to: " + cPartyNumber);
+            System.out.println("   Conference intent sent to: " + cPartyNumber);
             Thread.sleep(3000);
             
             // Check if conference is automatically established
@@ -394,14 +394,14 @@ public class ImprovedDialerPage {
                 result.setConferenceSuccess(true);
                 result.setConferenceDuration(15); // Default conference duration
                 result.setTotalDuration(bPartyDuration + 15);
-                System.out.println("  ✅ Conference automatically established");
+                System.out.println("   Conference automatically established");
             } else {
                 // Try manual merge as fallback
                 if (tryManualMerge()) {
                     result.setConferenceSuccess(true);
                     result.setConferenceDuration(15);
                     result.setTotalDuration(bPartyDuration + 15);
-                    System.out.println("  ✅ Conference established via manual merge");
+                    System.out.println("   Conference established via manual merge");
                 } else {
                     result.setConferenceSuccess(false);
                     result.setConferenceDuration(0);
@@ -423,7 +423,7 @@ public class ImprovedDialerPage {
     // Try manual merge with confirmed XPaths
     private boolean tryManualMerge() {
         try {
-            System.out.println("  🔄 Attempting manual merge...");
+            System.out.println("   Attempting manual merge...");
             
             // First try the More Options button
             By moreOptions = By.xpath("//androidx.compose.ui.platform.ComposeView[@resource-id=\"com.google.android.dialer:id/incall_main_buttons_container\"]/android.view.View/android.view.View/android.view.View[1]/android.view.View[7]/android.widget.CheckBox");
@@ -431,7 +431,7 @@ public class ImprovedDialerPage {
             WebElement moreOptionsBtn = driver.findElement(moreOptions);
             if (moreOptionsBtn.isDisplayed()) {
                 moreOptionsBtn.click();
-                System.out.println("  ✅ More options clicked");
+                System.out.println("   More options clicked");
                 Thread.sleep(2000);
                 
                 // Now try merge button
@@ -439,7 +439,7 @@ public class ImprovedDialerPage {
                 WebElement mergeBtn = driver.findElement(mergeButton);
                 if (mergeBtn.isDisplayed()) {
                     mergeBtn.click();
-                    System.out.println("  ✅ Merge button clicked - Conference established");
+                    System.out.println("   Merge button clicked - Conference established");
                     Thread.sleep(3000);
                     return true;
                 }
@@ -462,7 +462,7 @@ public class ImprovedDialerPage {
             params.put("command", "am start -a android.intent.action.CALL -d tel:" + phoneNumber);
             driver.executeScript("mobile: shell", params);
             
-            System.out.println("  ✅ Dial intent sent via ADB");
+            System.out.println("   Dial intent sent via ADB");
             Thread.sleep(3000);
         } catch (Exception e) {
             System.out.println("  ❌ ADB dial failed: " + e.getMessage());

@@ -1,7 +1,7 @@
 package com.telecom.config;
 
 /**
- * ✅ USSD CONFIGURATION
+ *  USSD CONFIGURATION
  */
 public class USSDConfig {
     

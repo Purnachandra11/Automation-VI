@@ -786,7 +786,7 @@ function startFreshAppium(res) {
       setTimeout(() => {
         exec('netstat -ano | findstr :4723', (checkError, checkStdout) => {
           if (checkStdout && checkStdout.includes('LISTENING')) {
-            console.log('✅ Appium server started successfully');
+            console.log(' Appium server started successfully');
             appiumStatus = 'running';
             res.json({
               success: true,
@@ -794,7 +794,7 @@ function startFreshAppium(res) {
             });
           } else if (attempt < 5) {
             // Try again
-            console.log(`🔄 Appium check attempt ${attempt} failed, retrying...`);
+            console.log(` Appium check attempt ${attempt} failed, retrying...`);
             checkAppium(attempt + 1);
           } else {
             // Final attempt failed
@@ -836,7 +836,7 @@ app.post('/api/appium/stop', (req, res) => {
     // Also kill any node processes with Appium
     exec('taskkill /F /IM node.exe /FI "WINDOWTITLE eq appium*"', (error2) => {
       appiumStatus = 'stopped';
-      console.log(`✅ Appium server stopped. Killed ${killedProcesses} process(es)`);
+      console.log(` Appium server stopped. Killed ${killedProcesses} process(es)`);
       res.json({
         success: true,
         message: `Appium server stopped. Killed ${killedProcesses} process(es)`
@@ -1504,7 +1504,7 @@ app.get('/api/debug/adb-devices', async (req, res) => {
 });
 // WebSocket connection handling
 wss.on('connection', (ws) => {
-  console.log('✅ New WebSocket client connected');
+  console.log(' New WebSocket client connected');
   clients.add(ws);
 
   ws.on('close', () => {
@@ -1563,7 +1563,7 @@ function parseAndBroadcastLogs(stdout, deviceId) {
   lines.forEach(line => {
     if (line.trim()) {
       let logType = 'info';
-      if (line.includes('✅') || line.includes('SUCCESS')) logType = 'success';
+      if (line.includes('') || line.includes('SUCCESS')) logType = 'success';
       else if (line.includes('❌') || line.includes('ERROR') || line.includes('FAILED')) logType = 'error';
       else if (line.includes('⚠️') || line.includes('WARNING')) logType = 'warning';
 
@@ -1654,7 +1654,7 @@ app.post("/api/test-command", upload.single('file'), async (req, res) => {
 
     // Handle process completion
     testProcess.on('close', (code) => {
-      console.log(`✅ Test process exited with code ${code}`);
+      console.log(` Test process exited with code ${code}`);
 
       // Send completion notification
       broadcastProgress(deviceId, {
@@ -1741,7 +1741,7 @@ app.options('*', cors());
 
 // If you want the server to be accessible from both
 server.listen(PORT, '0.0.0.0', () => {  // Listen on all interfaces
-  console.log(`✅ Backend server running on port ${PORT}`);
+  console.log(` Backend server running on port ${PORT}`);
   console.log(`🔌 WebSocket server ready on ws://localhost:${PORT} and ws://188.208.141.113:${PORT}`);
   console.log(`📊 API endpoints ready`);
   console.log(`📱 Dashboard: http://localhost:${PORT}/`);

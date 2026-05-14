@@ -36,7 +36,7 @@ public class VPNManager {
             );
             
             ADBHelper.executeCommand(vpnIntent);
-            System.out.println("✅ VPN settings opened");
+            System.out.println(" VPN settings opened");
             
             Thread.sleep(3000);
             
@@ -67,7 +67,7 @@ public class VPNManager {
                               vpnStatus.contains("VPN established");
             
             if (connected) {
-                System.out.println("✅ VPN is active on device: " + deviceId);
+                System.out.println(" VPN is active on device: " + deviceId);
             } else {
                 System.out.println("❌ VPN is not active on device: " + deviceId);
             }
@@ -94,7 +94,7 @@ public class VPNManager {
                 "adb -s " + deviceId + " shell am force-stop com.android.vpndialogs"
             );
             
-            System.out.println("✅ VPN disconnected");
+            System.out.println(" VPN disconnected");
             return true;
             
         } catch (Exception e) {
@@ -179,7 +179,7 @@ public class VPNManager {
         
         for (int i = 0; i < timeoutSeconds; i++) {
             if (isVPNConnected(deviceId)) {
-                System.out.println("✅ VPN connected after " + i + "s");
+                System.out.println(" VPN connected after " + i + "s");
                 return true;
             }
             
@@ -205,7 +205,7 @@ public class VPNManager {
         System.out.println("=".repeat(80));
         
         boolean connected = isVPNConnected(deviceId);
-        System.out.println("Connection Status: " + (connected ? "✅ CONNECTED" : "❌ DISCONNECTED"));
+        System.out.println("Connection Status: " + (connected ? " CONNECTED" : "❌ DISCONNECTED"));
         
         Map<String, String> details = getVPNDetails(deviceId);
         System.out.println("VPN Interface: " + details.getOrDefault("interface", "NONE"));
